@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'M3CoreData' target in the 'M3CoreData' project.
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
