@@ -1,3 +1,3 @@
 
 #import "M3CoreDataManager.h"
-#import "M3SimpleCoreData.h"
+#import "NSManagedObjectContext+M3Extensions.h"
