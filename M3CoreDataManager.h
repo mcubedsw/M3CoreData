@@ -42,8 +42,8 @@ OTHER DEALINGS IN THE SOFTWARE.
     NSManagedObjectContext *managedObjectContext;
 	NSString *initialType;
 	NSString *appSupportName;
-	NSString *modelName;
-	NSString *dataStoreName;
+	NSURL *modelURL;
+	NSURL *dataStoreURL;
 	
 	id delegate;
 }
@@ -67,12 +67,7 @@ OTHER DEALINGS IN THE SOFTWARE.
  */
 - (id)initWithInitialType:(NSString *)type appSupportName:(NSString *)supName modelName:(NSString *)mName dataStoreName:(NSString *)storeName;
 
-/**
- Returns the app support folder path, creating it on disk if necessary
- @result The path to the app support folder
- @since Available in M3CoreData 1.0 and later
- */
-- (NSString *)applicationSupportFolder;
+- (id)initWithInitialType:(NSString *)type modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)storeURL;
 
 /**
  Returns the persistent store coordinator, creating it if necessary

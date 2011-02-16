@@ -28,7 +28,6 @@
  OTHER DEALINGS IN THE SOFTWARE.
  
  *****************************************************************/
-
 #import "M3CoreDataManager.h"
 
 @implementation M3CoreDataManager
@@ -36,18 +35,22 @@
 @synthesize delegate;
 
 - (id)initWithInitialType:(NSString *)type appSupportName:(NSString *)supName modelName:(NSString *)mName dataStoreName:(NSString *)storeName {
+	NSAssert(NO, @"Called initWithInitialType:appSupportName:modelName:dataStoreName, should call initWithInitialType:modelURL:dataStoreURL:");
+	return nil;
+}
+
+
+- (id)initWithInitialType:(NSString *)type modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)storeURL {
 	if ((self = [super init])) {
 		initialType = type;
 		if (!type) {
 			initialType = NSXMLStoreType;
 		}
-		appSupportName = supName;
-		modelName = mName;
-		dataStoreName = storeName;
+		modelURL = aModelURL;
+		dataStoreURL = storeURL;
 	}
 	return self;
 }
-
 
 /**
  Returns the support folder for the application, used to store the Core Data
@@ -56,11 +59,10 @@
  former cannot be found), the system's temporary directory.
  */
 
+
 - (NSString *)applicationSupportFolder {
-	
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
-	return [basePath stringByAppendingPathComponent:appSupportName];
+	NSAssert(NO, @"Called applicationSupportFolder, should call applicationSupportFolderWithName:");
+	return nil;
 }
 
 /**
@@ -74,8 +76,7 @@
         return managedObjectModel;
     }
 	
-	NSURL *modelUrl = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], modelName]];
-    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelUrl];    
+    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
     return managedObjectModel;
 }
 
@@ -93,21 +94,12 @@
         return persistentStoreCoordinator;
     }
 	
-    NSFileManager *fileManager;
-    NSString *applicationSupportFolder = nil;
     NSURL *url;
     NSError *error;
-    
-    fileManager = [NSFileManager defaultManager];
-    applicationSupportFolder = [self applicationSupportFolder];
-    if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
-        [fileManager createDirectoryAtPath:applicationSupportFolder withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    
-    url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent: dataStoreName]];
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+
+	persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:NSMigratePersistentStoresAutomaticallyOption];
-    if (![persistentStoreCoordinator addPersistentStoreWithType:initialType configuration:nil URL:url options:options error:&error]){
+    if (![persistentStoreCoordinator addPersistentStoreWithType:initialType configuration:nil URL:dataStoreURL options:options error:&error]){
 		if ([error code] == 134100) {
 			//If we failed with an incorrect data model error then pass the version identifiers of the store to the delegate to decide what to do next
 			if ([[self delegate] respondsToSelector:@selector(coreDataManager:encounteredIncorrectModelWithVersionIdentifiers:)]) {
@@ -150,6 +142,7 @@
 	if (moc != nil) {
 		if ([moc commitEditing]) {
 			if ([moc hasChanges] && ![moc save:&error]) {
+				NSLog(@"%@", [[error userInfo] objectForKey:NSDetailedErrorsKey]);
 				BOOL errorResult = [[NSApplication sharedApplication] presentError:error];
 				
 				if (errorResult == YES) {
