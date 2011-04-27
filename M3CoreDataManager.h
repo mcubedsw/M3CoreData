@@ -65,8 +65,6 @@ OTHER DEALINGS IN THE SOFTWARE.
  @result storeName The name of the data store to load
  @since Available in M3CoreData 1.0 and later
  */
-- (id)initWithInitialType:(NSString *)type appSupportName:(NSString *)supName modelName:(NSString *)mName dataStoreName:(NSString *)storeName;
-
 - (id)initWithInitialType:(NSString *)type modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)storeURL;
 
 /**

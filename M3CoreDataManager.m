@@ -34,12 +34,6 @@
 
 @synthesize delegate;
 
-- (id)initWithInitialType:(NSString *)type appSupportName:(NSString *)supName modelName:(NSString *)mName dataStoreName:(NSString *)storeName {
-	NSAssert(NO, @"Called initWithInitialType:appSupportName:modelName:dataStoreName, should call initWithInitialType:modelURL:dataStoreURL:");
-	return nil;
-}
-
-
 - (id)initWithInitialType:(NSString *)type modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)storeURL {
 	if ((self = [super init])) {
 		initialType = type;
@@ -52,18 +46,6 @@
 	return self;
 }
 
-/**
- Returns the support folder for the application, used to store the Core Data
- store file.  This code uses a folder named "Minim" for
- the content, either in the NSApplicationSupportDirectory location or (if the
- former cannot be found), the system's temporary directory.
- */
-
-
-- (NSString *)applicationSupportFolder {
-	NSAssert(NO, @"Called applicationSupportFolder, should call applicationSupportFolderWithName:");
-	return nil;
-}
 
 /**
  Creates, retains, and returns the managed object model for the application 
@@ -94,7 +76,6 @@
         return persistentStoreCoordinator;
     }
 	
-    NSURL *url;
     NSError *error;
 
 	persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -104,7 +85,7 @@
 			//If we failed with an incorrect data model error then pass the version identifiers of the store to the delegate to decide what to do next
 			if ([[self delegate] respondsToSelector:@selector(coreDataManager:encounteredIncorrectModelWithVersionIdentifiers:)]) {
 				persistentStoreCoordinator = nil;
-				NSDictionary *metadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:initialType URL:url error:&error];
+				NSDictionary *metadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:initialType URL:dataStoreURL error:&error];
 				[[self delegate] coreDataManager:self encounteredIncorrectModelWithVersionIdentifiers:[metadata objectForKey:NSStoreModelVersionIdentifiersKey]];
 			}
 		} else {
@@ -142,7 +123,6 @@
 	if (moc != nil) {
 		if ([moc commitEditing]) {
 			if ([moc hasChanges] && ![moc save:&error]) {
-				NSLog(@"%@", [[error userInfo] objectForKey:NSDetailedErrorsKey]);
 				BOOL errorResult = [[NSApplication sharedApplication] presentError:error];
 				
 				if (errorResult == YES) {
