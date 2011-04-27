@@ -1,10 +1,11 @@
-//
-//  M3JSONAtomicStore.h
-//  JSONAtomicStore
-//
-//  Created by Martin Pilkington on 25/02/2011.
-//  Copyright 2011 M Cubed Software. All rights reserved.
-//
+/*****************************************************************
+ M3JSONAtomicStore.h
+ M3CoreData
+ 
+ Created by Martin Pilkington on 25/02/2011.
+ 
+ Please read the LICENCE.txt for licensing information
+ *****************************************************************/
 
 #import <Foundation/Foundation.h>
 

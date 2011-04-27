@@ -1,10 +1,11 @@
-//
-//  NSManagedObjectContext+M3Extensions.h
-//  M3CoreData
-//
-//  Created by Martin Pilkington on 12/12/2010.
-//  Copyright 2010 M Cubed Software. All rights reserved.
-//
+/*****************************************************************
+ NSManagedObjectContext+M3Extensions.h
+ M3CoreData
+ 
+ Created by Martin Pilkington on 12/12/2010.
+ 
+ Please read the LICENCE.txt for licensing information
+ *****************************************************************/
 
 #import <Cocoa/Cocoa.h>
 
