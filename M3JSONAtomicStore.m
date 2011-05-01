@@ -8,6 +8,7 @@
  *****************************************************************/
 
 #import "M3JSONAtomicStore.h"
+#import "M3JSONStore.h"
 #import "_CJSONSerializer.h"
 #import "_CJSONDeserializer.h"
 
@@ -18,7 +19,9 @@ NSString *M3RelationshipsKey = @"relationships";
 NSString *M3ObjectIdKey = @"objectID";
 
 
-@implementation M3JSONAtomicStore
+@implementation M3JSONAtomicStore {
+	M3JSONStore *jsonStore;
+}
 
 /***************************
  Set up the store
@@ -39,6 +42,7 @@ NSString *M3ObjectIdKey = @"objectID";
 			}
 		}
 		entityLastIndexes = [[NSMutableDictionary alloc] init];
+		jsonStore = [[M3JSONStore alloc] initWithModel:[coordinator managedObjectModel]];
 		[self setMetadata:[NSDictionary dictionaryWithObjectsAndKeys:[self type], NSStoreTypeKey, nil]];
 	}
 	return self;
@@ -214,28 +218,33 @@ Convert the JSON relationships to object ID relationships
 		return NO;
 	[self setMetadata:metadataDict];
 	
-
-	//Get data from disk
-	NSArray *entities = [[[self persistentStoreCoordinator] managedObjectModel] entities];
-	NSArray *nodeData = [self _nodeDataForEntities:entities atURL:[self URL] error:&*error];
-	if (!nodeData)
-		return NO;
+	NSDictionary *objectData = [jsonStore loadFromURL:[self URL]];
 	
-	//Create cache nodes
-	NSMutableDictionary *nodeMap = [NSMutableDictionary dictionary];
-	for (NSManagedObjectID *objectID in [nodeData valueForKey:M3ObjectIdKey]) {
-		NSAtomicStoreCacheNode *cacheNode = [[NSAtomicStoreCacheNode alloc] initWithObjectID:objectID];
-		[nodeMap setObject:cacheNode forKey:objectID];
-		[cacheNode release];
+	NSMutableDictionary *nodemap = [NSMutableDictionary dictionary];
+	for (NSString *jsonId in objectData) {
+		[jsonStore objectFromDictionary:objectData
+								 withId:jsonId
+							   usingMap:nodemap 
+						  creationBlock:^id(NSEntityDescription *entity, NSString *jsonId) 
+		{
+			NSManagedObjectID *objectId = [self objectIDForEntity:entity referenceObject:jsonId];
+			return [[NSAtomicStoreCacheNode alloc] initWithObjectID:objectId];									  
+		}];
+		
+		//Look for highest index
+		NSString *entityName = [[jsonId componentsSeparatedByString:@"."] objectAtIndex:0];
+		NSInteger entityId = [[[jsonId componentsSeparatedByString:@"."] objectAtIndex:1] integerValue];
+		NSNumber *lastIndex = [entityLastIndexes objectForKey:entityName];
+		if (!lastIndex) {
+			lastIndex = [NSNumber numberWithInt:0];
+		}
+		if ([lastIndex integerValue] < entityId) {
+			[entityLastIndexes setObject:[NSNumber numberWithInteger:entityId] forKey:entityName];
+		}
 	}
 	
-	//Finalise relationships and set data
-	for (NSDictionary *nodeDict in nodeData) {
-		NSAtomicStoreCacheNode *node = [nodeMap objectForKey:[nodeDict objectForKey:M3ObjectIdKey]];
-		[node setPropertyCache:[self _propertyDataFromNodeData:nodeDict usingNodeMap:nodeMap]];
-	}
-	
-	[self addCacheNodes:[NSSet setWithArray:[nodeMap allValues]]];
+	NSLog(@"%@", nodemap);
+	[self addCacheNodes:[NSSet setWithArray:[nodemap allValues]]];
 	
 	return YES;
 }
@@ -295,63 +304,12 @@ Convert the JSON relationships to object ID relationships
 		return NO;
 	}
 	
-	NSMutableDictionary *jsonEntities = [NSMutableDictionary dictionary];
-		
-	//Go through our cache nodes, creating a dictionary of each
-	for (NSAtomicStoreCacheNode *node in [self cacheNodes])	{
-		NSMutableDictionary *jsonNode = [NSMutableDictionary dictionary];
-		NSString *jsonNodeID = [[[self referenceObjectForObjectID:[node objectID]] componentsSeparatedByString:@"."] objectAtIndex:1];
-		NSEntityDescription *entity = [[node objectID] entity];
-		
-		//Loop through entity attributes  setting the attributes on our json node
-		[[entity attributesByName] enumerateKeysAndObjectsUsingBlock:^(NSString *attributeName, NSAttributeDescription *attributeDescription, BOOL *stop) {
-			id attributeValue = [[node propertyCache] objectForKey:attributeName];
-			if (!attributeValue)
-				return;
-			
-			if ([attributeDescription attributeType] == NSDateAttributeType) {
-				attributeValue = [attributeValue description];
-			}
-			[jsonNode setObject:attributeValue forKey:attributeName];
-		}];
-		
-		//Loop through our relationships, converting them back to our JSON versiosn
-		[[entity relationshipsByName] enumerateKeysAndObjectsUsingBlock:^(NSString *relationshipName, NSRelationshipDescription *relationshipDescription, BOOL *stop) {
-			if ([relationshipDescription isToMany]) {
-				NSMutableArray *relationshipValue = [NSMutableArray array];
-				for (NSAtomicStoreCacheNode *relationshipNode in [[node propertyCache] objectForKey:relationshipName]) {
-					[relationshipValue addObject:[self referenceObjectForObjectID:[relationshipNode objectID]]];
-				}
-				if ([relationshipValue count]) {
-					[jsonNode setObject:relationshipValue forKey:relationshipName];
-				}
-			} else {
-				NSAtomicStoreCacheNode *relationshipNode = [[node propertyCache] objectForKey:relationshipName];
-				if (relationshipNode) {
-					[jsonNode setObject:[self referenceObjectForObjectID:[relationshipNode objectID]] forKey:relationshipName];
-				}
-			}
-		}];
-		
-		//Add to our entity dict, creating it if needed
-		NSMutableDictionary *entityDict = [jsonEntities objectForKey:[entity name]];
-		if (!entityDict) {
-			entityDict = [NSMutableDictionary dictionary];
-			[jsonEntities setObject:entityDict forKey:[entity name]];
-		}
-		
-		[entityDict setObject:jsonNode forKey:jsonNodeID];
+	NSMutableDictionary *nodes = [NSMutableDictionary dictionary];
+	for (NSAtomicStoreCacheNode *node in [self cacheNodes]) {
+		[nodes setObject:node forKey:[self referenceObjectForObjectID:[node objectID]]];
 	}
-		
-	//Loop through our JSON entities and write to disk
-	for (NSString *entityName in jsonEntities) {
-		NSDictionary *jsonRepresentation = [jsonEntities objectForKey:entityName];
-		NSString *fileContents = [[_CJSONSerializer serializer] serializeDictionary:jsonRepresentation];
-		NSURL *entityURL = [[self URL] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.json", entityName]];
-		if (![fileContents writeToURL:entityURL atomically:YES encoding:NSUTF8StringEncoding error:&*error])
-			return NO;
-	};
-	return YES;
+	
+	return [jsonStore saveObjects:nodes toURL:[self URL] error:&*error];
 }
 
 /***************************

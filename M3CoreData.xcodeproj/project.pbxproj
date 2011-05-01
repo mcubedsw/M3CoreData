@@ -12,9 +12,13 @@
 		991C54AF136853CD007E307A /* M3CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* M3CoreData.framework */; };
 		9972E45D11B7EEE300E322E5 /* M3CoreDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9972E45B11B7EEE300E322E5 /* M3CoreDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9972E45E11B7EEE300E322E5 /* M3CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9972E45C11B7EEE300E322E5 /* M3CoreDataManager.m */; };
+		99A8969A136DA04300757DE5 /* M3FixtureController.h in Headers */ = {isa = PBXBuildFile; fileRef = 99A89696136DA04300757DE5 /* M3FixtureController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		99A8969B136DA04300757DE5 /* M3FixtureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A89697136DA04300757DE5 /* M3FixtureController.m */; };
+		99A8969C136DA04300757DE5 /* M3JSONStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 99A89698136DA04300757DE5 /* M3JSONStore.h */; };
+		99A8969D136DA04300757DE5 /* M3JSONStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A89699136DA04300757DE5 /* M3JSONStore.m */; };
 		99B68A7812B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 99B68A7612B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		99B68A7912B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B68A7712B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m */; };
-		99EB5D0C1368387A001094BF /* M3JSONAtomicStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */; };
+		99EB5D0C1368387A001094BF /* M3JSONAtomicStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		99EB5D0D1368387A001094BF /* M3JSONAtomicStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D0B1368387A001094BF /* M3JSONAtomicStore.m */; };
 		99EB5D1613683B2B001094BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EB5D1513683B2B001094BF /* Cocoa.framework */; };
 		99EB5D2013683B2B001094BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99EB5D1E13683B2B001094BF /* InfoPlist.strings */; };
@@ -50,6 +54,10 @@
 		8DC2EF5B0486A6940098B216 /* M3CoreData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = M3CoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9972E45B11B7EEE300E322E5 /* M3CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = M3CoreDataManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9972E45C11B7EEE300E322E5 /* M3CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3CoreDataManager.m; sourceTree = "<group>"; };
+		99A89696136DA04300757DE5 /* M3FixtureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3FixtureController.h; sourceTree = "<group>"; };
+		99A89697136DA04300757DE5 /* M3FixtureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3FixtureController.m; sourceTree = "<group>"; };
+		99A89698136DA04300757DE5 /* M3JSONStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3JSONStore.h; sourceTree = "<group>"; };
+		99A89699136DA04300757DE5 /* M3JSONStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3JSONStore.m; sourceTree = "<group>"; };
 		99B68A7612B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+M3Extensions.h"; sourceTree = "<group>"; };
 		99B68A7712B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+M3Extensions.m"; sourceTree = "<group>"; };
 		99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3JSONAtomicStore.h; sourceTree = "<group>"; };
@@ -156,6 +164,10 @@
 				9972E45C11B7EEE300E322E5 /* M3CoreDataManager.m */,
 				99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */,
 				99EB5D0B1368387A001094BF /* M3JSONAtomicStore.m */,
+				99A89696136DA04300757DE5 /* M3FixtureController.h */,
+				99A89697136DA04300757DE5 /* M3FixtureController.m */,
+				99A89698136DA04300757DE5 /* M3JSONStore.h */,
+				99A89699136DA04300757DE5 /* M3JSONStore.m */,
 				99B68A7612B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h */,
 				99B68A7712B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m */,
 				99EB5D591368405C001094BF /* TouchJSON */,
@@ -278,8 +290,8 @@
 			files = (
 				9972E45D11B7EEE300E322E5 /* M3CoreDataManager.h in Headers */,
 				99B68A7812B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h in Headers */,
-				99EC79E211D7C830002C472B /* M3CoreData.h in Headers */,
 				99EB5D0C1368387A001094BF /* M3JSONAtomicStore.h in Headers */,
+				99EC79E211D7C830002C472B /* M3CoreData.h in Headers */,
 				99EB5D701368405C001094BF /* _CDataScanner.h in Headers */,
 				99EB5D721368405C001094BF /* CDataScanner_Extensions.h in Headers */,
 				99EB5D741368405C001094BF /* NSCharacterSet_Extensions.h in Headers */,
@@ -289,6 +301,8 @@
 				99EB5D7E1368405C001094BF /* _CJSONScanner.h in Headers */,
 				99EB5D801368405C001094BF /* _CJSONSerializer.h in Headers */,
 				99EB5D821368405D001094BF /* _CSerializedJSONData.h in Headers */,
+				99A8969A136DA04300757DE5 /* M3FixtureController.h in Headers */,
+				99A8969C136DA04300757DE5 /* M3JSONStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +421,8 @@
 				99EB5D7F1368405C001094BF /* _CJSONScanner.m in Sources */,
 				99EB5D811368405C001094BF /* _CJSONSerializer.m in Sources */,
 				99EB5D831368405D001094BF /* _CSerializedJSONData.m in Sources */,
+				99A8969B136DA04300757DE5 /* M3FixtureController.m in Sources */,
+				99A8969D136DA04300757DE5 /* M3JSONStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
