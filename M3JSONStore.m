@@ -30,14 +30,13 @@
 - (NSDictionary *)loadFromURL:(NSURL *)aURL {
 	NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionary];
 	[[model entitiesByName] enumerateKeysAndObjectsUsingBlock:^(NSString *entityName, NSEntityDescription *entity, BOOL *stop) {
-		NSLog(@"url:%@", [aURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.json", entityName]]);
 		NSData *entityData = [NSData dataWithContentsOfURL:[aURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.json", entityName]]];
 		NSError *error = nil;
 		NSDictionary *entityDict = [[_CJSONDeserializer deserializer] deserializeAsDictionary:entityData error:&error];
 		NSAssert(entityDict, @"Error while parsing JSON for entity '%@': %@", entityName, error);
 		
 		for (NSString *objId in entityDict) {
-			[returnDictionary setObject:[entityDict objectForKey:objId] forKey:objId];
+			[returnDictionary setObject:[entityDict objectForKey:objId] forKey:[NSString stringWithFormat:@"%@.%@", entityName, objId]];
 		}
 	}];
 	
@@ -53,6 +52,7 @@
 		NSMutableDictionary *jsonObject = [NSMutableDictionary dictionary];
 		
 		NSString *entityName = [[jsonId componentsSeparatedByString:@"."] objectAtIndex:0];
+		NSString *objectId = [[jsonId componentsSeparatedByString:@"."] objectAtIndex:1];
 		NSEntityDescription *entity = [[model entitiesByName] objectForKey:entityName];
 		
 		[[entity attributesByName] enumerateKeysAndObjectsUsingBlock:^(NSString *attributeName, NSAttributeDescription *attribute, BOOL *stop) {
@@ -108,7 +108,7 @@
 			[jsonEntities setObject:entityDict forKey:[entity name]];
 		}
 		
-		[entityDict setObject:jsonObject forKey:jsonId];
+		[entityDict setObject:jsonObject forKey:objectId];
 	}];
 	
 	//Loop through our JSON entities and write to disk
@@ -124,7 +124,6 @@
 
 - (id)objectFromDictionary:(NSDictionary *)aDict withId:(NSString *)aId usingMap:(NSMutableDictionary *)aMap creationBlock:(id (^)(NSEntityDescription *entity, NSString *jsonId))aBlock {
 	id object = [aMap objectForKey:aId];	
-	NSLog(@"%d", [aDict count]);
 	if (!object) {
 		NSString *entityName = [[aId componentsSeparatedByString:@"."] objectAtIndex:0];
 		

@@ -16,9 +16,6 @@
 	NSDictionary *dataCache;
 	NSMutableDictionary *objectCache;
 }
-
-- (void)_loadDataAtURL:(NSURL *)aURL;
-
 @end
 
 @implementation M3FixtureController
