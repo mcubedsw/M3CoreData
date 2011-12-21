@@ -13,6 +13,10 @@
 @implementation NSManagedObjectContext (M3Extensions)
 
 - (NSArray *)objectsInEntityWithName:(NSString *)name predicate:(NSPredicate *)pred sortedWithDescriptors:(NSArray *)descriptors {
+	return [self objectsInEntityWithName:name predicate:pred sortedWithDescriptors:descriptors extraRequestSetup:nil];
+}
+
+- (NSArray *)objectsInEntityWithName:(NSString *)name predicate:(NSPredicate *)pred sortedWithDescriptors:(NSArray *)descriptors extraRequestSetup:(void (^)(NSFetchRequest *request))aSetup {
 	NSManagedObjectModel *mom = [[self persistentStoreCoordinator] managedObjectModel];
 	//Check the required variables are set
 	if (!mom || !name) {
@@ -32,6 +36,9 @@
 	[request setEntity:entity];
 	[request setPredicate:pred];
 	[request setSortDescriptors:descriptors];
+	if (aSetup) {
+		aSetup(request);
+	}
 	
 	NSError *error = nil;
 	NSArray *results = [self executeFetchRequest:request error:&error];

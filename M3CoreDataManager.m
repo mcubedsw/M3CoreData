@@ -11,7 +11,7 @@
 
 @implementation M3CoreDataManager
 
-@synthesize delegate;
+@synthesize delegate, dataStoreURL;
 
 - (id)initWithInitialType:(NSString *)type modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)storeURL {
 	if ((self = [super init])) {

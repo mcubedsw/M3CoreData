@@ -34,6 +34,9 @@
  */
 @property (assign) id delegate;
 
+
+@property (readonly) NSURL *dataStoreURL;
+
 /**
  Initialises the manager with the supplied data
  <b>Discussion</b>

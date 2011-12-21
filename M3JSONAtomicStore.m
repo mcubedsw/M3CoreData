@@ -222,6 +222,9 @@ Convert the JSON relationships to object ID relationships
 	
 	NSMutableDictionary *nodemap = [NSMutableDictionary dictionary];
 	for (NSString *jsonId in objectData) {
+		//Ignore any non-numeric objects, our stores are 1 indexed
+		if ([jsonId integerValue] == 0)
+			continue;
 		[jsonStore objectFromDictionary:objectData
 								 withId:jsonId
 							   usingMap:nodemap 
@@ -236,14 +239,13 @@ Convert the JSON relationships to object ID relationships
 		NSInteger entityId = [[[jsonId componentsSeparatedByString:@"."] objectAtIndex:1] integerValue];
 		NSNumber *lastIndex = [entityLastIndexes objectForKey:entityName];
 		if (!lastIndex) {
-			lastIndex = [NSNumber numberWithInt:0];
+			lastIndex = [NSNumber numberWithInt:1];
 		}
 		if ([lastIndex integerValue] < entityId) {
 			[entityLastIndexes setObject:[NSNumber numberWithInteger:entityId] forKey:entityName];
 		}
 	}
 	
-	NSLog(@"%@", nodemap);
 	[self addCacheNodes:[NSSet setWithArray:[nodemap allValues]]];
 	
 	return YES;

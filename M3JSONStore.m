@@ -31,12 +31,16 @@
 	NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionary];
 	[[model entitiesByName] enumerateKeysAndObjectsUsingBlock:^(NSString *entityName, NSEntityDescription *entity, BOOL *stop) {
 		NSData *entityData = [NSData dataWithContentsOfURL:[aURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.json", entityName]]];
+		if (!entityData)
+			return;
 		NSError *error = nil;
 		NSDictionary *entityDict = [[_CJSONDeserializer deserializer] deserializeAsDictionary:entityData error:&error];
 		NSAssert(entityDict, @"Error while parsing JSON for entity '%@': %@", entityName, error);
 		
 		for (NSString *objId in entityDict) {
-			[returnDictionary setObject:[entityDict objectForKey:objId] forKey:[NSString stringWithFormat:@"%@.%@", entityName, objId]];
+			for (NSString *idComponent in [objId componentsSeparatedByString:@"::"]) {
+				[returnDictionary setObject:[entityDict objectForKey:objId] forKey:[NSString stringWithFormat:@"%@.%@", entityName, idComponent]];
+			}
 		}
 	}];
 	
@@ -129,11 +133,12 @@
 		
 		NSEntityDescription *entity = [[model entitiesByName] objectForKey:entityName];
 		NSDictionary *objectData = [aDict objectForKey:aId];
-		
 		NSAssert(entity, @"Entity with name '%@' does not exist", entityName);
 		
 		object = aBlock(entity, aId);
-		[aMap setObject:object forKey:aId];
+		for (NSString *objectId in [aDict allKeysForObject:objectData]) {
+			[aMap setObject:object forKey:objectId];
+		}
 		
 		[[entity attributesByName] enumerateKeysAndObjectsUsingBlock:^(NSString *attributeName, NSAttributeDescription *attribute, BOOL *stop) {
 			id attributeValue = [objectData objectForKey:attributeName];

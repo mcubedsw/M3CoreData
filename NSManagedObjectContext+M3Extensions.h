@@ -26,6 +26,8 @@
  */
 - (NSArray *)objectsInEntityWithName:(NSString *)name predicate:(NSPredicate *)pred sortedWithDescriptors:(NSArray *)descriptors;
 
+- (NSArray *)objectsInEntityWithName:(NSString *)name predicate:(NSPredicate *)pred sortedWithDescriptors:(NSArray *)descriptors extraRequestSetup:(void (^)(NSFetchRequest *request))aSetup;
+
 /**
  @brief Creates and returns a new managed object in the entity with the supplied name with default values from the supplied dictionary
  @param name The name of the entity in which to create the object
