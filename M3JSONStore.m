@@ -17,14 +17,9 @@
 
 - (id)initWithModel:(NSManagedObjectModel *)aModel {
 	if ((self = [super init])) {
-		model = [aModel retain];
+		model = aModel;
 	}
 	return self;
-}
-
-- (void)dealloc {
-	[model release];
-	[super dealloc];
 }
 
 - (NSDictionary *)loadFromURL:(NSURL *)aURL {
@@ -44,7 +39,7 @@
 		}
 	}];
 	
-	return [[returnDictionary copy] autorelease];
+	return [returnDictionary copy];
 }
 
 - (BOOL)saveObjects:(NSDictionary *)aObjects toURL:(NSURL *)aURL error:(NSError **)aError {
@@ -73,7 +68,7 @@
 					attributeValue = [NSString stringWithFormat:@"@url(%@)", attributeValue];
 				} else if ([classValueName isEqualToString:@"NSColor"]) {
 					NSColor *colour = [attributeValue colorUsingColorSpace:[NSColorSpace deviceRGBColorSpace]];
-					attributeValue = [NSString stringWithFormat:@"@rgba(%d,%d,%d,%f.2)", 255 * [colour redComponent], 255 * [colour greenComponent], 255 * [colour blueComponent], [colour alphaComponent]];
+					attributeValue = [NSString stringWithFormat:@"@rgba(%f,%f,%f,%f.2)", 255 * [colour redComponent], 255 * [colour greenComponent], 255 * [colour blueComponent], [colour alphaComponent]];
 				} else {
 					attributeValue = [[NSValueTransformer valueTransformerForName:[attribute valueTransformerName]] reverseTransformedValue:attributeValue];
 				}

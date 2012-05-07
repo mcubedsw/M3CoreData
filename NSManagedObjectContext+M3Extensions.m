@@ -42,7 +42,6 @@
 	
 	NSError *error = nil;
 	NSArray *results = [self executeFetchRequest:request error:&error];
-	[request release];
 	
 	//If there was an error then return nothing
 	if (error) {
@@ -69,7 +68,7 @@
 	
 	Class managedObjectClass = NSClassFromString([entity managedObjectClassName]);
 	
-	return [[[managedObjectClass alloc] initWithEntity:entity insertIntoManagedObjectContext:aInsert ? self : nil] autorelease];
+	return [[managedObjectClass alloc] initWithEntity:entity insertIntoManagedObjectContext:aInsert ? self : nil];
 }
 
 - (NSUInteger)numberOfObjectsInEntityWithName:(NSString *)name predicate:(NSPredicate *)pred {
@@ -90,7 +89,6 @@
 	
 	NSError *error = nil;
 	NSUInteger count = [self countForFetchRequest:request error:&error];
-	[request release];
 	if (error) {
 		return NSNotFound;
 	}

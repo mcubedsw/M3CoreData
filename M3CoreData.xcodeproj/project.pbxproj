@@ -24,23 +24,23 @@
 		99EB5D2013683B2B001094BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99EB5D1E13683B2B001094BF /* InfoPlist.strings */; };
 		99EB5D2B13683BB7001094BF /* M3JSONAtomicStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D2A13683BB7001094BF /* M3JSONAtomicStoreTests.m */; };
 		99EB5D701368405C001094BF /* _CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D5A1368405C001094BF /* _CDataScanner.h */; };
-		99EB5D711368405C001094BF /* _CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D5B1368405C001094BF /* _CDataScanner.m */; };
+		99EB5D711368405C001094BF /* _CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D5B1368405C001094BF /* _CDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EB5D721368405C001094BF /* CDataScanner_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D5D1368405C001094BF /* CDataScanner_Extensions.h */; };
-		99EB5D731368405C001094BF /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D5E1368405C001094BF /* CDataScanner_Extensions.m */; };
+		99EB5D731368405C001094BF /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D5E1368405C001094BF /* CDataScanner_Extensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EB5D741368405C001094BF /* NSCharacterSet_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D5F1368405C001094BF /* NSCharacterSet_Extensions.h */; };
-		99EB5D751368405C001094BF /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D601368405C001094BF /* NSCharacterSet_Extensions.m */; };
+		99EB5D751368405C001094BF /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D601368405C001094BF /* NSCharacterSet_Extensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EB5D781368405C001094BF /* NSScanner_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D631368405C001094BF /* NSScanner_Extensions.h */; };
-		99EB5D791368405C001094BF /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D641368405C001094BF /* NSScanner_Extensions.m */; };
+		99EB5D791368405C001094BF /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D641368405C001094BF /* NSScanner_Extensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EB5D7A1368405C001094BF /* _CJSONDataSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D661368405C001094BF /* _CJSONDataSerializer.h */; };
-		99EB5D7B1368405C001094BF /* _CJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D671368405C001094BF /* _CJSONDataSerializer.m */; };
+		99EB5D7B1368405C001094BF /* _CJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D671368405C001094BF /* _CJSONDataSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EB5D7C1368405C001094BF /* _CJSONDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D681368405C001094BF /* _CJSONDeserializer.h */; };
-		99EB5D7D1368405C001094BF /* _CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D691368405C001094BF /* _CJSONDeserializer.m */; };
+		99EB5D7D1368405C001094BF /* _CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D691368405C001094BF /* _CJSONDeserializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EB5D7E1368405C001094BF /* _CJSONScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D6A1368405C001094BF /* _CJSONScanner.h */; };
-		99EB5D7F1368405C001094BF /* _CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D6B1368405C001094BF /* _CJSONScanner.m */; };
+		99EB5D7F1368405C001094BF /* _CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D6B1368405C001094BF /* _CJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EB5D801368405C001094BF /* _CJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D6C1368405C001094BF /* _CJSONSerializer.h */; };
-		99EB5D811368405C001094BF /* _CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D6D1368405C001094BF /* _CJSONSerializer.m */; };
+		99EB5D811368405C001094BF /* _CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D6D1368405C001094BF /* _CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EB5D821368405D001094BF /* _CSerializedJSONData.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D6E1368405C001094BF /* _CSerializedJSONData.h */; };
-		99EB5D831368405D001094BF /* _CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D6F1368405C001094BF /* _CSerializedJSONData.m */; };
+		99EB5D831368405D001094BF /* _CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D6F1368405C001094BF /* _CSerializedJSONData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EC79E211D7C830002C472B /* M3CoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EC79E111D7C830002C472B /* M3CoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -463,12 +463,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -476,6 +476,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@rpath";
 				PRODUCT_NAME = M3CoreData;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -484,17 +485,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = M3CoreData_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@rpath";
 				PRODUCT_NAME = M3CoreData;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -504,13 +506,12 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_GC = required;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -521,12 +522,11 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_GC = required;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -535,7 +535,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -546,12 +547,12 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "M3CoreData Tests/M3CoreData Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -560,7 +561,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
@@ -569,12 +571,12 @@
 				GCC_PREFIX_HEADER = "M3CoreData Tests/M3CoreData Tests-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "M3CoreData Tests/M3CoreData Tests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;

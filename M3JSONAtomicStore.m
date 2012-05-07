@@ -30,14 +30,12 @@ NSString *M3ObjectIdKey = @"objectID";
 	BOOL isDirectory;
 	BOOL storeExists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
 	if (![url isFileURL] || (!isDirectory && storeExists)) {
-		[self release];
 		return nil;
 	}
 		
 	if ((self = [super initWithPersistentStoreCoordinator:coordinator configurationName:configurationName URL:url options:options])) {
 		if (!storeExists) {
 			if (![[NSFileManager defaultManager] createDirectoryAtPath:[url path] withIntermediateDirectories:YES attributes:nil error:NULL]) {
-				[self release];
 				return nil;
 			}
 		}
@@ -46,14 +44,6 @@ NSString *M3ObjectIdKey = @"objectID";
 		[self setMetadata:[NSDictionary dictionaryWithObjectsAndKeys:[self type], NSStoreTypeKey, nil]];
 	}
 	return self;
-}
-
-/***************************
- Clean up
- **************************/
-- (void)dealloc {
-	[entityLastIndexes release];
-	[super dealloc];
 }
 
 
@@ -75,7 +65,7 @@ NSString *M3ObjectIdKey = @"objectID";
 	NSData *data = [NSData dataWithContentsOfURL:[url URLByAppendingPathComponent:@"_Metadata.json"]];
 	NSMutableDictionary *metadata = [[[_CJSONDeserializer deserializer] deserializeAsDictionary:data error:&*error] mutableCopy];
 	[metadata setObject:[NSArray arrayWithObject:@"1"] forKey:NSStoreModelVersionIdentifiersKey];
-	return [metadata autorelease];
+	return metadata;
 }
 
 /***************************
@@ -178,7 +168,7 @@ Convert the JSON relationships to object ID relationships
 		[entityLastIndexes setObject:[NSNumber numberWithInteger:lastIndex] forKey:[entity name]];
 	}
 	
-	return [[returnArray copy] autorelease];
+	return [returnArray copy];
 }
 
 /***************************
@@ -256,7 +246,7 @@ Convert the JSON relationships to object ID relationships
  Create a new cach node
  **************************/
 - (NSAtomicStoreCacheNode *)newCacheNodeForManagedObject:(NSManagedObject *)managedObject {
-	NSAtomicStoreCacheNode *node = [[[NSAtomicStoreCacheNode alloc] initWithObjectID:[managedObject objectID]] autorelease];
+	NSAtomicStoreCacheNode *node = [[NSAtomicStoreCacheNode alloc] initWithObjectID:[managedObject objectID]];
 	[self updateCacheNode:node fromManagedObject:managedObject];
 	return node;
 }
@@ -272,7 +262,7 @@ Convert the JSON relationships to object ID relationships
 	lastIndex++;
 	[entityLastIndexes setObject:[NSNumber numberWithInteger:lastIndex] forKey:entityName];
 	
-	return [[NSString stringWithFormat:@"%@.%d", entityName, lastIndex] retain];
+	return [NSString stringWithFormat:@"%@.%ld", entityName, lastIndex];
 }
 
 /***************************

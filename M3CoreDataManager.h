@@ -24,7 +24,6 @@
 	NSURL *modelURL;
 	NSURL *dataStoreURL;
 	
-	id delegate;
 }
 
 /**
@@ -32,7 +31,7 @@
  The manager's delegate
  @since Available in M3CoreData 1.0 and later
  */
-@property (assign) id delegate;
+@property (weak) id delegate;
 
 
 @property (readonly) NSURL *dataStoreURL;

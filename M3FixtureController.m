@@ -21,7 +21,7 @@
 @implementation M3FixtureController
 
 + (M3FixtureController *)fixtureControllerWithModel:(NSManagedObjectModel *)aModel andDataAtURL:(NSURL *)aURL {
-	return [[[self alloc] initWithModel:aModel andDataAtURL:aURL] autorelease];
+	return [[self alloc] initWithModel:aModel andDataAtURL:aURL];
 }
 
 - (id)initWithModel:(NSManagedObjectModel *)aModel andDataAtURL:(NSURL *)aURL {
@@ -33,15 +33,7 @@
 	return self;
 }
 
-- (void)dealloc {
-	[jsonStore release];
-	[dataCache release];
-	[objectCache release];
-	[super dealloc];
-}
-
 - (void)clearObjectCache {
-	[objectCache release];
 	objectCache = [[NSMutableDictionary alloc] init];
 }
 
@@ -51,7 +43,7 @@
 	for (NSString *objectId in objectKeys) {
 		[returnArray addObject:[self objectForId:objectId]];
 	}
-	return [[returnArray copy] autorelease];
+	return [returnArray copy];
 }
 
 - (id)objectForId:(NSString *)aId {
