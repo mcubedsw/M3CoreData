@@ -9,115 +9,127 @@
 
 #import "M3CoreDataManager.h"
 
-@implementation M3CoreDataManager
+@interface M3CoreDataManager ()
 
-@synthesize delegate, dataStoreURL;
+- (void)p_setupPersistentStoreCoordinator;
 
-- (id)initWithInitialType:(NSString *)type modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)storeURL {
+@end
+
+
+@implementation M3CoreDataManager {
+	NSPersistentStoreCoordinator *persistentStoreCoordinator;
+    NSManagedObjectModel *managedObjectModel;
+    NSManagedObjectContext *managedObjectContext;
+}
+
+
+//*****//
+- (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL {
 	if ((self = [super init])) {
-		initialType = type;
-		if (!type) {
-			initialType = NSXMLStoreType;
-		}
-		modelURL = aModelURL;
-		dataStoreURL = storeURL;
+		_initialType = [aType ?: NSXMLStoreType copy];
+		_modelURL = aModelURL;
+		_dataStoreURL = aStoreURL;
 	}
 	return self;
 }
 
 
-/**
- Creates, retains, and returns the managed object model for the application 
- by merging all of the models found in the application bundle.
- */
 
+
+
+#pragma mark -
+#pragma mark Core Properties
+
+//*****//
 - (NSManagedObjectModel *)managedObjectModel {
-	
-    if (managedObjectModel != nil) {
-        return managedObjectModel;
-    }
-	
-    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+    if (!managedObjectModel) {
+        managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];
+    }    
     return managedObjectModel;
 }
 
 
-/**
- Returns the persistent store coordinator for the application.  This 
- implementation will create and return a coordinator, having added the 
- store for the application to it.  (The folder for the store is created, 
- if necessary.)
- */
-
-- (NSPersistentStoreCoordinator *) persistentStoreCoordinator {
-	
-    if (persistentStoreCoordinator != nil) {
-        return persistentStoreCoordinator;
-    }
-	
-    NSError *error;
-
-	persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:NSMigratePersistentStoresAutomaticallyOption];
-    if (![persistentStoreCoordinator addPersistentStoreWithType:initialType configuration:nil URL:dataStoreURL options:options error:&error]){
-		if ([error code] == 134100) {
-			//If we failed with an incorrect data model error then pass the version identifiers of the store to the delegate to decide what to do next
-			if ([[self delegate] respondsToSelector:@selector(coreDataManager:encounteredIncorrectModelWithVersionIdentifiers:)]) {
-				persistentStoreCoordinator = nil;
-				NSDictionary *metadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:initialType URL:dataStoreURL error:&error];
-				[[self delegate] coreDataManager:self encounteredIncorrectModelWithVersionIdentifiers:[metadata objectForKey:NSStoreModelVersionIdentifiersKey]];
-			}
-		} else {
-			[[NSApplication sharedApplication] presentError:error];
-		}
-    }    
-	
+//*****//
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+	if(!persistentStoreCoordinator) {
+		persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+		[self p_setupPersistentStoreCoordinator];
+	}
     return persistentStoreCoordinator;
 }
 
 
-/**
- Returns the managed object context for the application (which is already
- bound to the persistent store coordinator for the application.) 
- */
-
-- (NSManagedObjectContext *) managedObjectContext {
-    if (!managedObjectContext) {
-		NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-		if (coordinator != nil) {
-			managedObjectContext = [[NSManagedObjectContext alloc] init];
-			[managedObjectContext setPersistentStoreCoordinator: coordinator];
+//*****//
+- (void)p_setupPersistentStoreCoordinator {
+	NSError *error = nil;
+	NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption:@YES};
+	NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:self.initialType
+																		configuration:nil
+																				  URL:self.dataStoreURL
+																			  options:options
+																				error:&error];
+	if (!store) {
+		if (error.code != NSPersistentStoreIncompatibleVersionHashError) {
+			[[NSApplication sharedApplication] presentError:error];
+			return;
+		}
+		
+		//If we failed with an incorrect data model error then pass the version identifiers of the store to the delegate to decide what to do next
+		if ([self.delegate respondsToSelector:@selector(coreDataManager:encounteredIncorrectModelWithVersionIdentifiers:)]) {
+			persistentStoreCoordinator = nil;
+			NSDictionary *metadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:self.initialType URL:self.dataStoreURL error:&error];
+			[self.delegate coreDataManager:self encounteredIncorrectModelWithVersionIdentifiers:metadata[NSStoreModelVersionIdentifiersKey]];
 		}
 	}
-    
+}
+
+
+//*****//
+- (NSManagedObjectContext *)managedObjectContext {
+    if (!managedObjectContext) {
+		NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
+		if (coordinator) {
+			managedObjectContext = [[NSManagedObjectContext alloc] init];
+			[managedObjectContext setPersistentStoreCoordinator:coordinator];
+		}
+	}
     return managedObjectContext;
 }
 
 
 
+
+
+#pragma mark -
+#pragma mark Saving
+
+//*****//
 - (NSApplicationTerminateReply)save {
 	NSError *error = nil;
-	NSInteger reply = NSTerminateNow;
-	NSManagedObjectContext *moc = [self managedObjectContext];
-	if (moc != nil) {
-		if ([moc commitEditing]) {
-			if ([moc hasChanges] && ![moc save:&error]) {
-				BOOL errorResult = [[NSApplication sharedApplication] presentError:error];
-				
-				if (errorResult == YES) {
-					reply = NSTerminateCancel;
-				} else {
-					NSInteger alertReturn = NSRunAlertPanel(nil, @"Could not save changes while quitting. Quit anyway?" , @"Quit anyway", @"Cancel", nil);
-					if (alertReturn == NSAlertAlternateReturn) {
-						reply = NSTerminateCancel;	
-					}
-				}
-			}
-		} else {
-			reply = NSTerminateCancel;
+	NSManagedObjectContext *moc = self.managedObjectContext;
+	if (!moc) {
+		return NSTerminateNow;
+	}
+
+	//We don't want to quit if the user is still editing
+	if (![moc commitEditing]) {
+		return NSTerminateCancel;
+	}
+
+	//If we've got changes but can't save show the error and offer whether to quit anyway
+	if (moc.hasChanges && ![moc save:&error]) {
+		BOOL errorResult = [[NSApplication sharedApplication] presentError:error];
+		
+		if (errorResult == YES) {
+			return NSTerminateCancel;
+		}
+
+		NSInteger alertReturn = NSRunAlertPanel(nil, @"Could not save changes while quitting. Quit anyway?" , @"Quit anyway", @"Cancel", nil);
+		if (alertReturn == NSAlertAlternateReturn) {
+			return NSTerminateCancel;
 		}
 	}
-	return reply;
+	return NSTerminateNow;
 }
 
 @end

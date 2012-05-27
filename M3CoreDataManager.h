@@ -8,33 +8,13 @@
 
 *****************************************************************/
 
-#import <Cocoa/Cocoa.h>
-
+@protocol M3CoreDataManagerDelegate;
 
 /**
  @class M3CoreDataManager
  Encapsulates all the usual CoreData management code for library apps, moving it out of your sight.
  */
-@interface M3CoreDataManager : NSObject {
-	NSPersistentStoreCoordinator *persistentStoreCoordinator;
-    NSManagedObjectModel *managedObjectModel;
-    NSManagedObjectContext *managedObjectContext;
-	NSString *initialType;
-	NSString *appSupportName;
-	NSURL *modelURL;
-	NSURL *dataStoreURL;
-	
-}
-
-/**
- @property delegate
- The manager's delegate
- @since Available in M3CoreData 1.0 and later
- */
-@property (weak) id delegate;
-
-
-@property (readonly) NSURL *dataStoreURL;
+@interface M3CoreDataManager : NSObject 
 
 /**
  Initialises the manager with the supplied data
@@ -46,28 +26,37 @@
  @result storeName The name of the data store to load
  @since Available in M3CoreData 1.0 and later
  */
-- (id)initWithInitialType:(NSString *)type modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)storeURL;
+- (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL;
+
+/**
+ @property delegate
+ The manager's delegate
+ @since Available in M3CoreData 1.0 and later
+ */
+@property (weak) id<M3CoreDataManagerDelegate> delegate;
+
+#warning Comments needed
+@property (readonly) NSURL *dataStoreURL;
+@property (readonly) NSURL *modelURL;
+@property (readonly) NSString *initialType;
 
 /**
  Returns the persistent store coordinator, creating it if necessary
- @result Returns the persistent store coordinator
  @since Available in M3CoreData 1.0 and later
  */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
+@property (readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 /**
  Returns the managed object model, creating it if necessary
- @result Returns the managed object model
  @since Available in M3CoreData 1.0 and later
  */
-- (NSManagedObjectModel *)managedObjectModel;
+@property (readonly) NSManagedObjectModel *managedObjectModel;
 
 /**
  Returns the managed object context, creating it if necessary
- @result Returns the managed object context
  @since Available in M3CoreData 1.0 and later
  */
-- (NSManagedObjectContext *)managedObjectContext;
+@property (readonly) NSManagedObjectContext *managedObjectContext;
 
 /**
  Attempts to save the data to disk, presenting an error if it fails
@@ -79,18 +68,22 @@
 @end
 
 
+
+
+
 /**
- @category M3CoreDataManager(DelegateMethods)
+ @protocol M3CoreDataManagerDelegate
  Delegate methods for M3CoreDataManager
  */
-@interface M3CoreDataManager(DelegateMethods) 
+@protocol M3CoreDataManagerDelegate <NSObject>
 
+@optional
 /**
  Calls the delegate when the manager encounters a data store which doesn't match the correct model
  @param manager The core data manager
  @param idents A set of version identifiers for the store
  @since Available in M3CoreData 1.0 and later
  */
-- (void)coreDataManager:(M3CoreDataManager *)manager encounteredIncorrectModelWithVersionIdentifiers:(NSSet *)idents;
+- (void)coreDataManager:(M3CoreDataManager *)aManager encounteredIncorrectModelWithVersionIdentifiers:(NSSet *)aIdentifiers;
 
 @end

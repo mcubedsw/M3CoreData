@@ -12,18 +12,18 @@
 
 @implementation NSManagedObjectContext (M3Extensions)
 
-- (NSArray *)objectsInEntityWithName:(NSString *)name predicate:(NSPredicate *)pred sortedWithDescriptors:(NSArray *)descriptors {
-	return [self objectsInEntityWithName:name predicate:pred sortedWithDescriptors:descriptors extraRequestSetup:nil];
+- (NSArray *)objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors {
+	return [self objectsInEntityWithName:aName predicate:aPredicate sortedWithDescriptors:aDescriptors extraRequestSetup:nil];
 }
 
-- (NSArray *)objectsInEntityWithName:(NSString *)name predicate:(NSPredicate *)pred sortedWithDescriptors:(NSArray *)descriptors extraRequestSetup:(void (^)(NSFetchRequest *request))aSetup {
+- (NSArray *)objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors extraRequestSetup:(void (^)(NSFetchRequest *aRequest))aSetup {
 	NSManagedObjectModel *mom = [[self persistentStoreCoordinator] managedObjectModel];
 	//Check the required variables are set
-	if (!mom || !name) {
+	if (!mom || !aName) {
 		return nil;
 	}
 	
-	NSEntityDescription *entity = [[mom entitiesByName] objectForKey:name];
+	NSEntityDescription *entity = [[mom entitiesByName] objectForKey:aName];
 	
 	//If our entity doesn't exist return nil
 	if (!entity) {
@@ -34,8 +34,8 @@
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
 	[request setEntity:entity];
-	[request setPredicate:pred];
-	[request setSortDescriptors:descriptors];
+	[request setPredicate:aPredicate];
+	[request setSortDescriptors:aDescriptors];
 	if (aSetup) {
 		aSetup(request);
 	}
@@ -52,14 +52,14 @@
 	return results;
 }
 
-- (id)createObjectInEntityWithName:(NSString *)name shouldInsert:(BOOL)aInsert {
+- (id)createObjectInEntityWithName:(NSString *)aName shouldInsert:(BOOL)aInsert {
 	NSManagedObjectModel *mom = [[self persistentStoreCoordinator] managedObjectModel];
 	//Check the required variables are set
-	if (!mom || !name) {
+	if (!mom || !aName) {
 		return nil;
 	}
 	
-	NSEntityDescription *entity = [[mom entitiesByName] objectForKey:name];
+	NSEntityDescription *entity = [[mom entitiesByName] objectForKey:aName];
 	
 	//If our entity doesn't exist return nil
 	if (!entity) {
@@ -71,13 +71,13 @@
 	return [[managedObjectClass alloc] initWithEntity:entity insertIntoManagedObjectContext:aInsert ? self : nil];
 }
 
-- (NSUInteger)numberOfObjectsInEntityWithName:(NSString *)name predicate:(NSPredicate *)pred {
+- (NSUInteger)numberOfObjectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate {
 	NSManagedObjectModel *mom = [[self persistentStoreCoordinator] managedObjectModel];
 	//Check the required variables are set
-	if (!mom || !name) 
+	if (!mom || !aName) 
 		return NSNotFound;
 	
-	NSEntityDescription *entity = [[mom entitiesByName] objectForKey:name];
+	NSEntityDescription *entity = [[mom entitiesByName] objectForKey:aName];
 	
 	//If our entity doesn't exist return nil
 	if (!entity) 
@@ -85,7 +85,7 @@
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entity];
-	[request setPredicate:pred];
+	[request setPredicate:aPredicate];
 	
 	NSError *error = nil;
 	NSUInteger count = [self countForFetchRequest:request error:&error];

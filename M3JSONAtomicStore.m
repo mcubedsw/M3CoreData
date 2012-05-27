@@ -26,21 +26,21 @@ NSString *M3ObjectIdKey = @"objectID";
 /***************************
  Set up the store
  **************************/
-- (id)initWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)coordinator configurationName:(NSString *)configurationName URL:(NSURL*)url options:(NSDictionary *)options { 
+- (id)initWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)aCoordinator configurationName:(NSString *)aConfigurationName URL:(NSURL*)aURL options:(NSDictionary *)aOptions {
 	BOOL isDirectory;
 	BOOL storeExists = [[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDirectory];
 	if (![url isFileURL] || (!isDirectory && storeExists)) {
 		return nil;
 	}
 		
-	if ((self = [super initWithPersistentStoreCoordinator:coordinator configurationName:configurationName URL:url options:options])) {
+	if ((self = [super initWithPersistentStoreCoordinator:aCoordinator configurationName:aConfigurationName URL:url options:options])) {
 		if (!storeExists) {
 			if (![[NSFileManager defaultManager] createDirectoryAtPath:[url path] withIntermediateDirectories:YES attributes:nil error:NULL]) {
 				return nil;
 			}
 		}
 		entityLastIndexes = [[NSMutableDictionary alloc] init];
-		jsonStore = [[M3JSONStore alloc] initWithModel:[coordinator managedObjectModel]];
+		jsonStore = [[M3JSONStore alloc] initWithModel:[aCoordinator managedObjectModel]];
 		[self setMetadata:[NSDictionary dictionaryWithObjectsAndKeys:[self type], NSStoreTypeKey, nil]];
 	}
 	return self;
@@ -61,9 +61,9 @@ NSString *M3ObjectIdKey = @"objectID";
 /***************************
  Get the metadata from the file
  **************************/
-+ (NSDictionary *)metadataForPersistentStoreWithURL:(NSURL *)url error:(NSError **)error {
-	NSData *data = [NSData dataWithContentsOfURL:[url URLByAppendingPathComponent:@"_Metadata.json"]];
-	NSMutableDictionary *metadata = [[[_CJSONDeserializer deserializer] deserializeAsDictionary:data error:&*error] mutableCopy];
++ (NSDictionary *)metadataForPersistentStoreWithURL:(NSURL *)aURL error:(NSError **)aError {
+	NSData *data = [NSData dataWithContentsOfURL:[aURL URLByAppendingPathComponent:@"_Metadata.json"]];
+	NSMutableDictionary *metadata = [[[_CJSONDeserializer deserializer] deserializeAsDictionary:data error:aError] mutableCopy];
 	[metadata setObject:[NSArray arrayWithObject:@"1"] forKey:NSStoreModelVersionIdentifiersKey];
 	return metadata;
 }
@@ -71,9 +71,9 @@ NSString *M3ObjectIdKey = @"objectID";
 /***************************
  Set the metadata on the file
  **************************/
-+ (BOOL)setMetadata:(NSDictionary *)metadata forPersistentStoreWithURL:(NSURL*)url error:(NSError **)error {	
-	NSString *json = [[_CJSONSerializer serializer] serializeDictionary:metadata];
-	return [json writeToURL:[url URLByAppendingPathComponent:@"_Metadata.json"] atomically:YES encoding:NSUTF8StringEncoding error:&*error];
++ (BOOL)setMetadata:(NSDictionary *)aMetadata forPersistentStoreWithURL:(NSURL*)aURL error:(NSError **)aError {
+	NSString *json = [[_CJSONSerializer serializer] serializeDictionary:aMetadata];
+	return [json writeToURL:[aURL URLByAppendingPathComponent:@"_Metadata.json"] atomically:YES encoding:NSUTF8StringEncoding error:&*arror];
 }
 
 
@@ -143,7 +143,7 @@ Convert the JSON relationships to object ID relationships
 	for (NSEntityDescription *entity in aEntities) {
 		//Parse our entity JSON to a dictionary
 		NSData *data = [NSData dataWithContentsOfURL:[[self URL] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.json", [entity name]]]];
-		NSDictionary *entityDictionary = [[_CJSONDeserializer deserializer] deserializeAsDictionary:data error:&*aError];
+		NSDictionary *entityDictionary = [[_CJSONDeserializer deserializer] deserializeAsDictionary:data error:aError];
 		if (!entityDictionary)
 			return nil;
 		
@@ -202,8 +202,8 @@ Convert the JSON relationships to object ID relationships
 /***************************
  Load data
  **************************/
-- (BOOL)load:(NSError **)error {
-	NSDictionary *metadataDict = [[self class] metadataForPersistentStoreWithURL:[self URL] error:&*error];
+- (BOOL)load:(NSError **)aError {
+	NSDictionary *metadataDict = [[self class] metadataForPersistentStoreWithURL:[self URL] error:&*aError];
 	if (!metadataDict)
 		return NO;
 	[self setMetadata:metadataDict];
@@ -245,17 +245,17 @@ Convert the JSON relationships to object ID relationships
 /***************************
  Create a new cach node
  **************************/
-- (NSAtomicStoreCacheNode *)newCacheNodeForManagedObject:(NSManagedObject *)managedObject {
-	NSAtomicStoreCacheNode *node = [[NSAtomicStoreCacheNode alloc] initWithObjectID:[managedObject objectID]];
-	[self updateCacheNode:node fromManagedObject:managedObject];
+- (NSAtomicStoreCacheNode *)newCacheNodeForManagedObject:(NSManagedObject *)aManagedObject {
+	NSAtomicStoreCacheNode *node = [[NSAtomicStoreCacheNode alloc] initWithObjectID:[aManagedObject objectID]];
+	[self updateCacheNode:node fromManagedObject:aManagedObject];
 	return node;
 }
 
 /***************************
  Create a new reference object
  **************************/
-- (id)newReferenceObjectForManagedObject:(NSManagedObject *)managedObject {
-	NSString *entityName = [[managedObject entity] name];
+- (id)newReferenceObjectForManagedObject:(NSManagedObject *)aManagedObject {
+	NSString *entityName = [[aManagedObject entity] name];
 	
 	//Increment the last index for the entity
 	NSInteger lastIndex = [[entityLastIndexes objectForKey:entityName] integerValue];
@@ -268,17 +268,17 @@ Convert the JSON relationships to object ID relationships
 /***************************
  Update the cache node
  **************************/
-- (void)updateCacheNode:(NSAtomicStoreCacheNode *)node fromManagedObject:(NSManagedObject *)managedObject {
+- (void)updateCacheNode:(NSAtomicStoreCacheNode *)aNode fromManagedObject:(NSManagedObject *)aManagedObject {
 	NSMutableDictionary *propertyCacheDict = [NSMutableDictionary dictionary];
 	
-	for (NSPropertyDescription *description in [managedObject entity]) {
-		id value = [managedObject valueForKey:[description name]];
+	for (NSPropertyDescription *description in [aManagedObject entity]) {
+		id value = [aManagedObject valueForKey:[description name]];
 		if (value) {
 			[propertyCacheDict setObject:value forKey:[description name]];
 		}
 	}
 	
-	[node setPropertyCache:propertyCacheDict];
+	[aNode setPropertyCache:propertyCacheDict];
 }
 
 
@@ -291,8 +291,8 @@ Convert the JSON relationships to object ID relationships
 /***************************
  Save to disk
  **************************/
-- (BOOL)save:(NSError **)error {
-	if (![[self class] setMetadata:[self metadata] forPersistentStoreWithURL:[self URL] error:&*error]) {
+- (BOOL)save:(NSError **)aError {
+	if (![[self class] setMetadata:[self metadata] forPersistentStoreWithURL:[self URL] error:aError]) {
 		return NO;
 	}
 	
@@ -301,14 +301,14 @@ Convert the JSON relationships to object ID relationships
 		[nodes setObject:node forKey:[self referenceObjectForObjectID:[node objectID]]];
 	}
 	
-	return [jsonStore saveObjects:nodes toURL:[self URL] error:&*error];
+	return [jsonStore saveObjects:nodes toURL:[self URL] error:aError];
 }
 
 /***************************
  Empty the property cache
  **************************/
-- (void)willRemoveCacheNodes:(NSSet *)cacheNodes {
-	[cacheNodes makeObjectsPerformSelector:@selector(setPropertyCache:) withObject:nil];
+- (void)willRemoveCacheNodes:(NSSet *)aCacheNodes {
+	[aCacheNodes makeObjectsPerformSelector:@selector(setPropertyCache:) withObject:nil];
 }
 
 @end

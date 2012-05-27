@@ -24,9 +24,9 @@
  @param descriptors An array of NSSortDescriptors
  @result An array of NSManagedObjects matching the predicate in the enitty with the supplied name
  */
-- (NSArray *)objectsInEntityWithName:(NSString *)name predicate:(NSPredicate *)pred sortedWithDescriptors:(NSArray *)descriptors;
+- (NSArray *)objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors;
 
-- (NSArray *)objectsInEntityWithName:(NSString *)name predicate:(NSPredicate *)pred sortedWithDescriptors:(NSArray *)descriptors extraRequestSetup:(void (^)(NSFetchRequest *request))aSetup;
+- (NSArray *)objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors extraRequestSetup:(void (^)(NSFetchRequest *request))aSetup;
 
 /**
  @brief Creates and returns a new managed object in the entity with the supplied name with default values from the supplied dictionary
@@ -34,7 +34,7 @@
  @param aInsert YES if the new value should be inserted into the managed object context, otherwise NO.
  @result The newly created NSMangagedObject
  */
-- (id)createObjectInEntityWithName:(NSString *)name shouldInsert:(BOOL)aInsert;
+- (id)createObjectInEntityWithName:(NSString *)aName shouldInsert:(BOOL)aInsert;
 
 /**
  @brief Returns the number of objects in the entity with the supplied name, filtered by the predicate
@@ -42,6 +42,6 @@
  @param pred The predicate with which to filter the objects
  @result The number of objects in the supplied entity
  */
-- (NSUInteger)numberOfObjectsInEntityWithName:(NSString *)name predicate:(NSPredicate *)pred;
+- (NSUInteger)numberOfObjectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate;
 
 @end
