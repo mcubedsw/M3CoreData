@@ -9,75 +9,90 @@
 
 #import "NSManagedObjectContext+M3Extensions.h"
 
+@interface NSManagedObjectContext (M3ExtensionsPrivate)
+
+- (NSError *)p_entityNotFoundErrorWithName:(NSString *)aName;
+
+@end
+
 
 @implementation NSManagedObjectContext (M3Extensions)
 
-- (NSArray *)objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors {
-	return [self objectsInEntityWithName:aName predicate:aPredicate sortedWithDescriptors:aDescriptors extraRequestSetup:nil];
+//*****//
+- (NSArray *)m3_objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors {
+	return [self m3_objectsInEntityWithName:aName predicate:aPredicate sortedWithDescriptors:aDescriptors extraRequestSetup:nil error:NULL];
 }
 
-- (NSArray *)objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors extraRequestSetup:(void (^)(NSFetchRequest *aRequest))aSetup {
-	NSManagedObjectModel *mom = [[self persistentStoreCoordinator] managedObjectModel];
+
+//*****//
+- (NSArray *)m3_objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors extraRequestSetup:(void (^)(NSFetchRequest *aRequest))aSetup error:(NSError **)aError {
+	NSManagedObjectModel *mom = self.persistentStoreCoordinator.managedObjectModel;
 	//Check the required variables are set
 	if (!mom || !aName) {
+		if (aError != NULL) {
+			*aError = [self p_entityNotFoundErrorWithName:aName];
+		}
 		return nil;
 	}
 	
-	NSEntityDescription *entity = [[mom entitiesByName] objectForKey:aName];
+	NSEntityDescription *entity = mom.entitiesByName[aName];
 	
 	//If our entity doesn't exist return nil
 	if (!entity) {
-		NSLog(@"entity doesn't exist in entities:%@", [mom entitiesByName]);
+		if (aError != NULL) {
+			*aError = [self p_entityNotFoundErrorWithName:aName];
+		}
 		return nil;
 	}
 	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	
+	NSFetchRequest *request = [NSFetchRequest new];
 	[request setEntity:entity];
 	[request setPredicate:aPredicate];
+
 	[request setSortDescriptors:aDescriptors];
 	if (aSetup) {
 		aSetup(request);
 	}
-	
-	NSError *error = nil;
-	NSArray *results = [self executeFetchRequest:request error:&error];
-	
-	//If there was an error then return nothing
-	if (error) {
-		NSLog(@"error:%@", error);
-		return nil;
-	}
-	
-	return results;
+
+	return [self executeFetchRequest:request error:aError];
 }
 
-- (id)createObjectInEntityWithName:(NSString *)aName shouldInsert:(BOOL)aInsert {
-	NSManagedObjectModel *mom = [[self persistentStoreCoordinator] managedObjectModel];
+
+//*****//
+- (id)m3_createObjectInEntityWithName:(NSString *)aName shouldInsert:(BOOL)aInsert error:(NSError **)aError {
+	NSManagedObjectModel *mom = self.persistentStoreCoordinator.managedObjectModel;
 	//Check the required variables are set
 	if (!mom || !aName) {
+		if (aError != NULL) {
+			*aError = [self p_entityNotFoundErrorWithName:aName];
+		}
 		return nil;
 	}
 	
-	NSEntityDescription *entity = [[mom entitiesByName] objectForKey:aName];
+	NSEntityDescription *entity = mom.entitiesByName[aName];
 	
 	//If our entity doesn't exist return nil
 	if (!entity) {
+		if (aError != NULL) {
+			*aError = [self p_entityNotFoundErrorWithName:aName];
+		}
 		return nil;
 	}
 	
-	Class managedObjectClass = NSClassFromString([entity managedObjectClassName]);
+	Class managedObjectClass = NSClassFromString(entity.managedObjectClassName);
 	
 	return [[managedObjectClass alloc] initWithEntity:entity insertIntoManagedObjectContext:aInsert ? self : nil];
 }
 
-- (NSUInteger)numberOfObjectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate {
-	NSManagedObjectModel *mom = [[self persistentStoreCoordinator] managedObjectModel];
+
+//*****//
+- (NSUInteger)m3_numberOfObjectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate {
+	NSManagedObjectModel *mom = self.persistentStoreCoordinator.managedObjectModel;
 	//Check the required variables are set
 	if (!mom || !aName) 
 		return NSNotFound;
 	
-	NSEntityDescription *entity = [[mom entitiesByName] objectForKey:aName];
+	NSEntityDescription *entity = mom.entitiesByName[aName];
 	
 	//If our entity doesn't exist return nil
 	if (!entity) 
@@ -86,13 +101,22 @@
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entity];
 	[request setPredicate:aPredicate];
-	
-	NSError *error = nil;
-	NSUInteger count = [self countForFetchRequest:request error:&error];
-	if (error) {
-		return NSNotFound;
-	}
-	return count;
+
+	return [self countForFetchRequest:request error:NULL];
+}
+
+
+
+
+
+#pragma mark -
+#pragma mark Errors
+
+//*****//
+- (NSError *)p_entityNotFoundErrorWithName:(NSString *)aName {
+	return [NSError errorWithDomain:M3CoreDataErrorDomain code:M3EntityNotFoundError userInfo:@{
+		NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Could not find the entity with name:%@",aName]
+	}];
 }
 
 @end

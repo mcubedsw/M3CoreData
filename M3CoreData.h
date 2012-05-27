@@ -2,3 +2,4 @@
 #import "NSManagedObjectContext+M3Extensions.h"
 #import "M3JSONAtomicStore.h"
 #import "M3FixtureController.h"
+#import "M3CoreDataConstants.h"

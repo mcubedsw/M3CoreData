@@ -7,16 +7,12 @@
  Please read the LICENCE.txt for licensing information
  *****************************************************************/
 
-#import <Foundation/Foundation.h>
-
 /**
  @class M3FixtureController
  Support for text fixtures using NSManagedObjects, based upon data in a JSON store
  @since Available in M3CoreData 1.0 and later
  */
-@interface M3FixtureController : NSObject {
-	
-}
+@interface M3FixtureController : NSObject
 
 /**
  @brief Create a new fixture controller

@@ -13,9 +13,7 @@
 This is a private class used by M3FixtureController and M3JSONAtomicStore.
  It is used for reading and writing a json store
  */
-@interface M3JSONStore : NSObject {
-	
-}
+@interface M3JSONStore : NSObject
 
 - (id)initWithModel:(NSManagedObjectModel *)aModel;
 
@@ -23,4 +21,5 @@ This is a private class used by M3FixtureController and M3JSONAtomicStore.
 - (BOOL)saveObjects:(NSDictionary *)aObjects toURL:(NSURL *)aURL error:(NSError **)aError;
 
 - (id)objectFromDictionary:(NSDictionary *)aDict withId:(NSString *)aId usingMap:(NSMutableDictionary *)aMap creationBlock:(id (^)(NSEntityDescription *entity, NSString *jsonId))aBlock;
+
 @end

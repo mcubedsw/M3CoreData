@@ -18,6 +18,8 @@
 		99A8969D136DA04300757DE5 /* M3JSONStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A89699136DA04300757DE5 /* M3JSONStore.m */; };
 		99B68A7812B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 99B68A7612B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		99B68A7912B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B68A7712B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m */; };
+		99C3A0431572B8D100A6CAD5 /* M3CoreDataConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 99C3A0411572B8D100A6CAD5 /* M3CoreDataConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		99C3A0441572B8D100A6CAD5 /* M3CoreDataConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C3A0421572B8D100A6CAD5 /* M3CoreDataConstants.m */; };
 		99EB5D0C1368387A001094BF /* M3JSONAtomicStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		99EB5D0D1368387A001094BF /* M3JSONAtomicStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D0B1368387A001094BF /* M3JSONAtomicStore.m */; };
 		99EB5D1613683B2B001094BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EB5D1513683B2B001094BF /* Cocoa.framework */; };
@@ -60,6 +62,8 @@
 		99A89699136DA04300757DE5 /* M3JSONStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3JSONStore.m; sourceTree = "<group>"; };
 		99B68A7612B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+M3Extensions.h"; sourceTree = "<group>"; };
 		99B68A7712B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+M3Extensions.m"; sourceTree = "<group>"; };
+		99C3A0411572B8D100A6CAD5 /* M3CoreDataConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3CoreDataConstants.h; sourceTree = "<group>"; };
+		99C3A0421572B8D100A6CAD5 /* M3CoreDataConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3CoreDataConstants.m; sourceTree = "<group>"; };
 		99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3JSONAtomicStore.h; sourceTree = "<group>"; };
 		99EB5D0B1368387A001094BF /* M3JSONAtomicStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3JSONAtomicStore.m; sourceTree = "<group>"; };
 		99EB5D1313683B2B001094BF /* M3CoreData Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "M3CoreData Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +174,8 @@
 				99A89699136DA04300757DE5 /* M3JSONStore.m */,
 				99B68A7612B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h */,
 				99B68A7712B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m */,
+				99C3A0411572B8D100A6CAD5 /* M3CoreDataConstants.h */,
+				99C3A0421572B8D100A6CAD5 /* M3CoreDataConstants.m */,
 				99EB5D591368405C001094BF /* TouchJSON */,
 			);
 			name = Classes;
@@ -303,6 +309,7 @@
 				99EB5D821368405D001094BF /* _CSerializedJSONData.h in Headers */,
 				99A8969A136DA04300757DE5 /* M3FixtureController.h in Headers */,
 				99A8969C136DA04300757DE5 /* M3JSONStore.h in Headers */,
+				99C3A0431572B8D100A6CAD5 /* M3CoreDataConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +433,7 @@
 				99EB5D831368405D001094BF /* _CSerializedJSONData.m in Sources */,
 				99A8969B136DA04300757DE5 /* M3FixtureController.m in Sources */,
 				99A8969D136DA04300757DE5 /* M3JSONStore.m in Sources */,
+				99C3A0441572B8D100A6CAD5 /* M3CoreDataConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +483,6 @@
 				GCC_PREFIX_HEADER = M3CoreData_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@rpath";
-				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = M3CoreData;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
@@ -497,7 +504,6 @@
 				GCC_PREFIX_HEADER = M3CoreData_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@rpath";
-				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = M3CoreData;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
