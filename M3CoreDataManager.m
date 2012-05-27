@@ -62,7 +62,7 @@
 //*****//
 - (void)p_setupPersistentStoreCoordinator {
 	NSError *error = nil;
-	NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption:@YES};
+	NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption:@YES };
 	NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:self.initialType
 																		configuration:nil
 																				  URL:self.dataStoreURL

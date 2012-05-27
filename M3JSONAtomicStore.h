@@ -7,12 +7,8 @@
  Please read the LICENCE.txt for licensing information
  *****************************************************************/
 
-#import <Foundation/Foundation.h>
-
 extern NSString *M3JSONStoreType;
 
-@interface M3JSONAtomicStore : NSAtomicStore {
-	NSMutableDictionary *entityLastIndexes;
-}
+@interface M3JSONAtomicStore : NSAtomicStore 
 
 @end
