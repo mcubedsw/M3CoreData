@@ -1,4 +1,4 @@
-M3CoreData: Copyright (c) 2011 by M Cubed Software
+M3CoreData: Copyright (c) 2012 by M Cubed Software
 TouchJSON: Copyright (c) 2008 Jonathan Wight
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

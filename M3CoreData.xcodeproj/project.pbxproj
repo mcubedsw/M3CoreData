@@ -130,9 +130,8 @@
 		0867D691FE84028FC02AAC07 /* M3CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				08FB77AEFE84172EC02AAC07 /* Classes */,
-				32C88DFF0371C24200C91783 /* Other Sources */,
-				089C1665FE841158C02AAC07 /* Resources */,
+				08FB77AEFE84172EC02AAC07 /* M3CoreData */,
+				99C3A0451572C25700A6CAD5 /* Dependencies */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				99EB5D1B13683B2B001094BF /* M3CoreData Tests */,
 				99EB5D1413683B2B001094BF /* Frameworks */,
@@ -154,31 +153,19 @@
 		089C1665FE841158C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+		08FB77AEFE84172EC02AAC07 /* M3CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				99EC79E111D7C830002C472B /* M3CoreData.h */,
-				9972E45B11B7EEE300E322E5 /* M3CoreDataManager.h */,
-				9972E45C11B7EEE300E322E5 /* M3CoreDataManager.m */,
-				99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */,
-				99EB5D0B1368387A001094BF /* M3JSONAtomicStore.m */,
-				99A89696136DA04300757DE5 /* M3FixtureController.h */,
-				99A89697136DA04300757DE5 /* M3FixtureController.m */,
-				99A89698136DA04300757DE5 /* M3JSONStore.h */,
-				99A89699136DA04300757DE5 /* M3JSONStore.m */,
-				99B68A7612B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h */,
-				99B68A7712B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m */,
-				99C3A0411572B8D100A6CAD5 /* M3CoreDataConstants.h */,
-				99C3A0421572B8D100A6CAD5 /* M3CoreDataConstants.m */,
-				99EB5D591368405C001094BF /* TouchJSON */,
+				99C3A0461572C27100A6CAD5 /* Source */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				089C1665FE841158C02AAC07 /* Resources */,
 			);
-			name = Classes;
+			path = M3CoreData;
 			sourceTree = "<group>";
 		};
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
@@ -202,9 +189,38 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				32DBCF5E0370ADEE00C91783 /* M3CoreData_Prefix.pch */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		99C3A0451572C25700A6CAD5 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				99EB5D591368405C001094BF /* TouchJSON */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		99C3A0461572C27100A6CAD5 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				99EC79E111D7C830002C472B /* M3CoreData.h */,
+				9972E45B11B7EEE300E322E5 /* M3CoreDataManager.h */,
+				9972E45C11B7EEE300E322E5 /* M3CoreDataManager.m */,
+				99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */,
+				99EB5D0B1368387A001094BF /* M3JSONAtomicStore.m */,
+				99A89696136DA04300757DE5 /* M3FixtureController.h */,
+				99A89697136DA04300757DE5 /* M3FixtureController.m */,
+				99A89698136DA04300757DE5 /* M3JSONStore.h */,
+				99A89699136DA04300757DE5 /* M3JSONStore.m */,
+				99B68A7612B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h */,
+				99B68A7712B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m */,
+				99C3A0411572B8D100A6CAD5 /* M3CoreDataConstants.h */,
+				99C3A0421572B8D100A6CAD5 /* M3CoreDataConstants.m */,
+			);
+			name = Source;
 			sourceTree = "<group>";
 		};
 		99EB5D1413683B2B001094BF /* Frameworks */ = {
