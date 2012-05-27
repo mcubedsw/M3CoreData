@@ -15,7 +15,11 @@ This is a private class used by M3FixtureController and M3JSONAtomicStore.
  */
 @interface M3JSONStore : NSObject
 
+#warning Comments Needed
+
 - (id)initWithModel:(NSManagedObjectModel *)aModel;
+
+@property (readonly) NSManagedObjectModel *model;
 
 - (NSDictionary *)loadFromURL:(NSURL *)aURL;
 - (BOOL)saveObjects:(NSDictionary *)aObjects toURL:(NSURL *)aURL error:(NSError **)aError;
