@@ -35,9 +35,22 @@
  */
 @property (weak) id<M3CoreDataManagerDelegate> delegate;
 
-#warning Comments needed
+/**
+ Returns the URL of the data store backing the managed object context
+ @since M3CoreData 1.0 or later
+ */
 @property (readonly) NSURL *dataStoreURL;
+
+/**
+ Returns the URL of the managed object model file on disk
+ @since M3CoreData 1.0 or later
+ */
 @property (readonly) NSURL *modelURL;
+
+/**
+ Returns the initial type for the persistent store
+ @since M3CoreData 1.0 or later
+ */
 @property (readonly) NSString *initialType;
 
 /**

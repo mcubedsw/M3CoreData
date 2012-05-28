@@ -6,9 +6,26 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		991C4DC71573E91600CC43F3 /* Process Build Numbers */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 991C4DC81573E91600CC43F3 /* Build configuration list for PBXAggregateTarget "Process Build Numbers" */;
+			buildPhases = (
+				991C4DCB1573E91C00CC43F3 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Process Build Numbers";
+			productName = "Process Build Numbers";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		991C4DB51573D59100CC43F3 /* OCHamcrest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 991C4DB31573D58100CC43F3 /* OCHamcrest.framework */; };
+		991C4DB71573D5B500CC43F3 /* OCHamcrest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 991C4DB31573D58100CC43F3 /* OCHamcrest.framework */; };
+		991C4DC41573E55F00CC43F3 /* M3JSONStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 991C4DC31573E55F00CC43F3 /* M3JSONStoreTests.m */; };
 		991C54AF136853CD007E307A /* M3CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* M3CoreData.framework */; };
 		9972E45D11B7EEE300E322E5 /* M3CoreDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9972E45B11B7EEE300E322E5 /* M3CoreDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9972E45E11B7EEE300E322E5 /* M3CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9972E45C11B7EEE300E322E5 /* M3CoreDataManager.m */; };
@@ -46,6 +63,36 @@
 		99EC79E211D7C830002C472B /* M3CoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EC79E111D7C830002C472B /* M3CoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		991C4DC01573D8F300CC43F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = M3CoreData;
+		};
+		991C4DCC1573E96200CC43F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 991C4DC71573E91600CC43F3;
+			remoteInfo = "Process Build Numbers";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		991C4DB61573D5AD00CC43F3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				991C4DB71573D5B500CC43F3 /* OCHamcrest.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -54,6 +101,10 @@
 		32DBCF5E0370ADEE00C91783 /* M3CoreData_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3CoreData_Prefix.pch; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* M3CoreData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = M3CoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		991C4DB31573D58100CC43F3 /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCHamcrest.framework; sourceTree = "<group>"; };
+		991C4DC21573E55F00CC43F3 /* M3JSONStoreTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3JSONStoreTests.h; sourceTree = "<group>"; };
+		991C4DC31573E55F00CC43F3 /* M3JSONStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3JSONStoreTests.m; sourceTree = "<group>"; };
+		991C4DC51573E85700CC43F3 /* Info.plist.prefix */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Info.plist.prefix; sourceTree = "<group>"; };
 		9972E45B11B7EEE300E322E5 /* M3CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = M3CoreDataManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9972E45C11B7EEE300E322E5 /* M3CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3CoreDataManager.m; sourceTree = "<group>"; };
 		99A89696136DA04300757DE5 /* M3FixtureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3FixtureController.h; sourceTree = "<group>"; };
@@ -113,6 +164,7 @@
 			files = (
 				991C54AF136853CD007E307A /* M3CoreData.framework in Frameworks */,
 				99EB5D1613683B2B001094BF /* Cocoa.framework in Frameworks */,
+				991C4DB51573D59100CC43F3 /* OCHamcrest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				991C4DC51573E85700CC43F3 /* Info.plist.prefix */,
 				32DBCF5E0370ADEE00C91783 /* M3CoreData_Prefix.pch */,
 			);
 			name = "Other Sources";
@@ -198,6 +251,7 @@
 		99C3A0451572C25700A6CAD5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				991C4DB31573D58100CC43F3 /* OCHamcrest.framework */,
 				99EB5D591368405C001094BF /* TouchJSON */,
 			);
 			path = Dependencies;
@@ -220,7 +274,7 @@
 				99C3A0411572B8D100A6CAD5 /* M3CoreDataConstants.h */,
 				99C3A0421572B8D100A6CAD5 /* M3CoreDataConstants.m */,
 			);
-			name = Source;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		99EB5D1413683B2B001094BF /* Frameworks */ = {
@@ -247,6 +301,8 @@
 			children = (
 				99EB5D2913683BB7001094BF /* M3JSONAtomicStoreTests.h */,
 				99EB5D2A13683BB7001094BF /* M3JSONAtomicStoreTests.m */,
+				991C4DC21573E55F00CC43F3 /* M3JSONStoreTests.h */,
+				991C4DC31573E55F00CC43F3 /* M3JSONStoreTests.m */,
 				99EB5D1C13683B2B001094BF /* Supporting Files */,
 			);
 			path = "M3CoreData Tests";
@@ -344,6 +400,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				991C4DCD1573E96200CC43F3 /* PBXTargetDependency */,
 			);
 			name = M3CoreData;
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -358,11 +415,13 @@
 				99EB5D0E13683B2B001094BF /* Sources */,
 				99EB5D0F13683B2B001094BF /* Frameworks */,
 				99EB5D1013683B2B001094BF /* Resources */,
+				991C4DB61573D5AD00CC43F3 /* CopyFiles */,
 				99EB5D1113683B2B001094BF /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				991C4DC11573D8F300CC43F3 /* PBXTargetDependency */,
 			);
 			name = "M3CoreData Tests";
 			productName = "M3CoreData Tests";
@@ -391,6 +450,7 @@
 			targets = (
 				8DC2EF4F0486A6940098B216 /* M3CoreData */,
 				99EB5D1213683B2B001094BF /* M3CoreData Tests */,
+				991C4DC71573E91600CC43F3 /* Process Build Numbers */,
 			);
 		};
 /* End PBXProject section */
@@ -415,6 +475,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		991C4DCB1573E91C00CC43F3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/M3CoreData/Info.plist.prefix",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Info.plist.prefix",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ruby \"${SRCROOT}/Scripts/processbuildnumbers.rb\"";
+		};
 		99EB5D1113683B2B001094BF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -458,10 +533,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				99EB5D2B13683BB7001094BF /* M3JSONAtomicStoreTests.m in Sources */,
+				991C4DC41573E55F00CC43F3 /* M3JSONStoreTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		991C4DC11573D8F300CC43F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* M3CoreData */;
+			targetProxy = 991C4DC01573D8F300CC43F3 /* PBXContainerItemProxy */;
+		};
+		991C4DCD1573E96200CC43F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 991C4DC71573E91600CC43F3 /* Process Build Numbers */;
+			targetProxy = 991C4DCC1573E96200CC43F3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
@@ -491,13 +580,18 @@
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Dependencies\"",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = M3CoreData_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				GCC_PREFIX_HEADER = "$(TARGET_NAME)/M3CoreData_Prefix.pch";
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_PREFIX_HEADER = "$(TARGET_TEMP_DIR)/../Process Build Numbers.build/DerivedSources/Info.plist.prefix";
+				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "@rpath";
 				PRODUCT_NAME = M3CoreData;
 				SDKROOT = macosx;
@@ -514,11 +608,16 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Dependencies\"",
+				);
 				FRAMEWORK_VERSION = A;
-				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = M3CoreData_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				GCC_PREFIX_HEADER = "$(TARGET_NAME)/M3CoreData_Prefix.pch";
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_PREFIX_HEADER = "$(TARGET_TEMP_DIR)/../Process Build Numbers.build/DerivedSources/Info.plist.prefix";
+				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "@rpath";
 				PRODUCT_NAME = M3CoreData;
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -548,6 +647,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -558,6 +658,20 @@
 			};
 			name = Release;
 		};
+		991C4DC91573E91600CC43F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		991C4DCA1573E91600CC43F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		99EB5D2713683B2B001094BF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -565,7 +679,10 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)/Dependencies\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -574,6 +691,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "M3CoreData Tests/M3CoreData Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -591,13 +709,16 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)/Dependencies\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "M3CoreData Tests/M3CoreData Tests-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "M3CoreData Tests/M3CoreData Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -628,6 +749,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		991C4DC81573E91600CC43F3 /* Build configuration list for PBXAggregateTarget "Process Build Numbers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				991C4DC91573E91600CC43F3 /* Debug */,
+				991C4DCA1573E91600CC43F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		99EB5D2613683B2B001094BF /* Build configuration list for PBXNativeTarget "M3CoreData Tests" */ = {
 			isa = XCConfigurationList;

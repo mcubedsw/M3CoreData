@@ -11,19 +11,6 @@
 
 @implementation M3JSONAtomicStoreTests
 
-- (void)setUp {
-	[super setUp];
-	
-	// Set-up code here.
-}
 
-- (void)tearDown {
-	// Tear-down code here.
-	
-	[super tearDown];
-}
-
-
-//Can't be bothered writing tests yet
 
 @end

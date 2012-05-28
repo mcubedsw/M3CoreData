@@ -6,8 +6,6 @@
 //  Copyright 2011 M Cubed Software. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
-
 
 @interface M3JSONAtomicStoreTests : SenTestCase {
     

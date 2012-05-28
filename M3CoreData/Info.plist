@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.${PRODUCT_NAME:rfc1034Identifier}</string>
+	<string>com.mcubedsw.${PRODUCT_NAME:rfc1034Identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -19,7 +19,9 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>BUNDLEVERSION</string>
+	<key>M3CommitHash</key>
+	<string>COMMITHASH</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>NSPrincipalClass</key>

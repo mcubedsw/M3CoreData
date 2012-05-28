@@ -5,3 +5,8 @@
 #ifdef __OBJC__
 	#import <Cocoa/Cocoa.h>
 #endif
+
+#import <SenTestingKit/SenTestingKit.h>
+
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
