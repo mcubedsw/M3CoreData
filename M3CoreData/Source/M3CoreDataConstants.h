@@ -10,3 +10,5 @@
 extern NSString *M3CoreDataErrorDomain;
 
 extern const NSInteger M3EntityNotFoundError;
+
+extern NSString *M3JSONStoreType;

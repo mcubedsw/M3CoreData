@@ -25,6 +25,13 @@
 
 //*****//
 - (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL {
+	return [self initWithInitialType:aType modelURL:aModelURL dataStoreURL:aStoreURL storeOptions:@{ 
+		NSMigratePersistentStoresAutomaticallyOption : @YES, 
+		NSInferMappingModelAutomaticallyOption : @YES
+	}];
+}
+
+- (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL storeOptions:(NSDictionary *)aOptions {
 	if ((self = [super init])) {
 		_initialType = [aType ?: NSXMLStoreType copy];
 		_modelURL = aModelURL;

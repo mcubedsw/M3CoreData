@@ -12,7 +12,7 @@
 #import "_CJSONSerializer.h"
 #import "_CJSONDeserializer.h"
 
-NSString *M3JSONStoreType = @"M3JSONStoreType";
+
 
 NSString *M3AttributesKey = @"attributes";
 NSString *M3RelationshipsKey = @"relationships";

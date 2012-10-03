@@ -12,3 +12,5 @@
 NSString *M3CoreDataErrorDomain = @"com.mcubedsw.m3coredata.errors";
 
 const NSInteger M3EntityNotFoundError = 1;
+
+NSString *M3JSONStoreType = @"M3JSONStoreType";

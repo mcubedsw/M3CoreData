@@ -19,14 +19,28 @@
 /**
  Initialises the manager with the supplied data
  <b>Discussion</b>
- This method does not create any of the core data object, these are created as needed upon their access
- @param type The store type for the persistent store
- @param subName The name of the application support folder
- @result mName The name of the model to use
- @result storeName The name of the data store to load
+ This method does not create any of the core data object, these are created as needed upon their access. It sets the default store options to
+ @{ NSMigratePersistentStoresAutomaticallyOption : @YES, NSInferMappingModelAutomaticallyOption : @YES }
+ @param aType The initial store type for the persistent store
+ @param aModelURL The URL location of the model file to use for the store
+ @param aStoreURL The URL location of the store file
+ @result A newly initialised M3CoreDataManager
  @since Available in M3CoreData 1.0 and later
  */
 - (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL;
+
+/**
+ Initialises the manager with the supplied data
+ <b>Discussion</b>
+ This method does not create any of the core data object, these are created as needed upon their access
+ @param aType The initial store type for the persistent store
+ @param aModelURL The URL location of the model file to use for the store
+ @param aStoreURL The URL location of the store file
+ @param aOptions The options to use when creating the persistent store
+ @result A newly initialised M3CoreDataManager
+ @since Available in M3CoreData 1.0 and later
+ */
+- (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL storeOptions:(NSDictionary *)aOptions;
 
 /**
  @property delegate

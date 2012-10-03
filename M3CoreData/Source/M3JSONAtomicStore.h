@@ -7,7 +7,7 @@
  Please read the LICENCE.txt for licensing information
  *****************************************************************/
 
-extern NSString *M3JSONStoreType;
+
 
 @interface M3JSONAtomicStore : NSAtomicStore 
 
