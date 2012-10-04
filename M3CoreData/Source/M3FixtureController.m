@@ -18,14 +18,16 @@
 }
 
 //*****//
-+ (M3FixtureController *)fixtureControllerWithModel:(NSManagedObjectModel *)aModel andDataAtURL:(NSURL *)aURL {
-	return [[self alloc] initWithModel:aModel andDataAtURL:aURL];
++ (M3FixtureController *)fixtureControllerWithModel:(NSManagedObjectModel *)aModel dataURL:(NSURL *)aURL {
+	return [[self alloc] initWithModel:aModel dataURL:aURL];
 }
 
 
 //*****//
-- (id)initWithModel:(NSManagedObjectModel *)aModel andDataAtURL:(NSURL *)aURL {
+- (id)initWithModel:(NSManagedObjectModel *)aModel dataURL:(NSURL *)aURL {
 	if ((self = [super init])) {
+		_managedObjectModel = aModel;
+		_dataURL = aURL;
 		jsonStore = [[M3JSONStore alloc] initWithModel:aModel];
 		objectCache = [NSMutableDictionary new];
 		dataCache = [[jsonStore loadFromURL:aURL] copy];

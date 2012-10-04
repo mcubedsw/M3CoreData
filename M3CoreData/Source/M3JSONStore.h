@@ -7,8 +7,6 @@
  Please read the LICENCE.txt for licensing information
  *****************************************************************/
 
-#import <Foundation/Foundation.h>
-
 /**
 This is a private class used by M3FixtureController and M3JSONAtomicStore.
  It is used for reading and writing a json store
@@ -17,7 +15,7 @@ This is a private class used by M3FixtureController and M3JSONAtomicStore.
 
 - (id)initWithModel:(NSManagedObjectModel *)aModel;
 
-@property (readonly) NSManagedObjectModel *model;
+@property (readonly) NSManagedObjectModel *managedObjectModel;
 
 - (NSDictionary *)loadFromURL:(NSURL *)aURL;
 - (BOOL)saveObjects:(NSDictionary *)aObjects toURL:(NSURL *)aURL error:(NSError **)aError;

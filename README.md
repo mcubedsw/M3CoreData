@@ -23,7 +23,7 @@ Each entity JSON file has a root dictionary. This dictionary contains the ID (an
 
 Relationships are defined with simple IDs, in the format "‹‹entity name››.‹‹object id››".
 
-While this store can potentially be used in production code, I would urge caution as it hasn't been extensively tested. It's primary aim is to seed test data into a Core Data store.
+While this store can potentially be used in production code, I would urge caution as it hasn't been extensively tested. Its primary aim is to seed test data into a Core Data store.
 
 ##Changes Log
 
@@ -32,15 +32,21 @@ While this store can potentially be used in production code, I would urge cautio
 * Tidied up the source
 * Completed comments
 * No longer supports Garbage Collection, instead uses ARC
+* Removed many dependencies on AppKit in preparation for iOS version
+* Added unit tests
 
 ####API changes
 _NSManagedObjectContext+M3Extensions_
+
+**Added**
+`- (NSArray *)m3_objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors extraRequestSetup:(void (^)(NSFetchRequest *request))aSetup error:(NSError **)aError`
+
 **Changed**
 Old: `- (NSArray *)objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *)`
 New: `- (NSArray *)m3_objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *)`
 
-Old: `- (NSArray *)objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *)extraRequestSetup:(void (^)(NSFetchRequest *request))`
-New: `- (NSArray *)m3_objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *)extraRequestSetup:(void (^)(NSFetchRequest *request)) error:(NSError **)`
+Old: `- (NSArray *)objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *) extraRequestSetup:(void (^)(NSFetchRequest *request))`
+New: `- (NSArray *)m3_objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *) extraRequestSetup:(void (^)(NSFetchRequest *request)) error:(NSError **)`
 
 Old: `- (id)createObjectInEntityWithName:(NSString *) shouldInsert:(BOOL)`
 New: `- (id)m3_createObjectInEntityWithName:(NSString *) shouldInsert:(BOOL) error:(NSError **)`
@@ -50,9 +56,12 @@ New: `- (id)m3_createObjectInEntityWithName:(NSString *) shouldInsert:(BOOL) err
 _M3CoreDataManager_
 
 **Added**
+`- (id)initWithInitialType:(NSString *) modelURL:(NSURL *) dataStoreURL:(NSURL *) storeOptions:(NSDictionary *)`
 `@property (readonly) NSURL *dataStoreURL`
 `@property (readonly) NSURL *modelURL`
 `@property (readonly) NSURL *initialType`
+`- (NSPersistentStoreCoordinator *)persistentStoreCoordinatorWithError:(NSError **)`
+`- (BOOL)saveWithError:(NSError **)`
 
 **Changed**
 Old: `@property (assign) id delegate`
@@ -67,3 +76,27 @@ New: `@property (readonly) NSManagedObjectModel *managedObjectModel`
 Old: `- (NSManagedObjectContext *)managedObjectContext`
 New: `@property (readonly) NSManagedObjectContext *managedObjectContext`
 
+Old: `- (NSApplicationTerminateReply)save`
+New: `- (BOOL)save`
+
+<hr/>
+
+_M3FixtureController_
+
+**Added**
+`@property (readonly) NSManagedObjectModel *managedObjectModel`
+`@property (readonly) NSURL *dataURL`
+
+**Changed**
+Old: `+ (M3FixtureController *)fixtureControllerWithModel:(NSManagedObjectModel *) andDataAtURL:(NSURL *)`
+New: `+ (M3FixtureController *)fixtureControllerWithModel:(NSManagedObjectModel *) dataURL:(NSURL *)`
+
+Old: `- (id)initWithModel:(NSManagedObjectModel *) andDataAtURL:(NSURL *)`
+New: `- (id)initWithModel:(NSManagedObjectModel *) dataURL:(NSURL *)`
+
+<hr/>
+
+_M3FixtureController_
+
+**Added**
+`@property (readonly) NSManagedObjectModel *managedObjectModel`

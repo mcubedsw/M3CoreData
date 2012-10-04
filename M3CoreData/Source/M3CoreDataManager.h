@@ -5,7 +5,6 @@
  Created by Martin Pilkington on 15/07/2009.
 
  Please read the LICENCE.txt for licensing information
-
 *****************************************************************/
 
 @protocol M3CoreDataManagerDelegate;
@@ -37,7 +36,7 @@
  @param aModelURL The URL location of the model file to use for the store
  @param aStoreURL The URL location of the store file
  @param aOptions The options to use when creating the persistent store
- @result A newly initialised M3CoreDataManager
+ @return A newly initialised M3CoreDataManager
  @since Available in M3CoreData 1.0 and later
  */
 - (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL storeOptions:(NSDictionary *)aOptions;
@@ -85,12 +84,29 @@
  */
 @property (readonly) NSManagedObjectContext *managedObjectContext;
 
+
 /**
- Attempts to save the data to disk, presenting an error if it fails
- @result Returns NSTerminateNow if successful, NSTerminateCancel if not
+ Returns the persistent store coordinator, creating it if necessary
+ @param aError An error pointer that will be filled with  any errors that occur during creation of the persistent store coordinator
+ @return The manager's persistent store coordinator, or nil if it could not be created for any reason
+ @since M3CoreData 1.0 or later
+*/
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinatorWithError:(NSError **)aError;
+
+/**
+ Saves the data to disk
+ @return Returns YES if successful, NO if not
+ @since PROJECT_NAME VERSION_NAME or later
+*/
+- (BOOL)save;
+
+/**
+ Saves the data to disk
+ @param aError
+ @return Returns YES if successful, NO if not
  @since Available in M3CoreData 1.0 and later
  */
-- (NSApplicationTerminateReply)save;
+- (BOOL)saveWithError:(NSError **)aError;
 
 @end
 

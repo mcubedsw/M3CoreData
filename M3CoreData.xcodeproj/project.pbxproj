@@ -248,6 +248,15 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		992B8449161DB70C00814095 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				99A89698136DA04300757DE5 /* M3JSONStore.h */,
+				99A89699136DA04300757DE5 /* M3JSONStore.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		99C3A0451572C25700A6CAD5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,18 +270,17 @@
 			isa = PBXGroup;
 			children = (
 				99EC79E111D7C830002C472B /* M3CoreData.h */,
+				99C3A0411572B8D100A6CAD5 /* M3CoreDataConstants.h */,
+				99C3A0421572B8D100A6CAD5 /* M3CoreDataConstants.m */,
 				9972E45B11B7EEE300E322E5 /* M3CoreDataManager.h */,
 				9972E45C11B7EEE300E322E5 /* M3CoreDataManager.m */,
 				99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */,
 				99EB5D0B1368387A001094BF /* M3JSONAtomicStore.m */,
 				99A89696136DA04300757DE5 /* M3FixtureController.h */,
 				99A89697136DA04300757DE5 /* M3FixtureController.m */,
-				99A89698136DA04300757DE5 /* M3JSONStore.h */,
-				99A89699136DA04300757DE5 /* M3JSONStore.m */,
 				99B68A7612B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h */,
 				99B68A7712B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m */,
-				99C3A0411572B8D100A6CAD5 /* M3CoreDataConstants.h */,
-				99C3A0421572B8D100A6CAD5 /* M3CoreDataConstants.m */,
+				992B8449161DB70C00814095 /* Private */,
 			);
 			path = Source;
 			sourceTree = "<group>";

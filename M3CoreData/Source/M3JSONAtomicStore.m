@@ -12,7 +12,7 @@
 #import "_CJSONSerializer.h"
 #import "_CJSONDeserializer.h"
 
-
+#pragma MOAR COMMENTS
 
 NSString *M3AttributesKey = @"attributes";
 NSString *M3RelationshipsKey = @"relationships";
@@ -35,9 +35,7 @@ NSString *M3ObjectIdKey = @"objectID";
 	NSMutableDictionary *entityLastIndexes;
 }
 
-/***************************
- Set up the store
- **************************/
+//*****//
 - (id)initWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)aCoordinator configurationName:(NSString *)aConfigurationName URL:(NSURL*)aURL options:(NSDictionary *)aOptions {
 	BOOL isDirectory;
 	BOOL storeExists = [[NSFileManager defaultManager] fileExistsAtPath:aURL.path isDirectory:&isDirectory];
@@ -61,9 +59,7 @@ NSString *M3ObjectIdKey = @"objectID";
 }
 
 
-/***************************
- Return the type string
- **************************/
+//*****//
 - (NSString *)type {
 	return M3JSONStoreType;
 }
@@ -75,9 +71,7 @@ NSString *M3ObjectIdKey = @"objectID";
 #pragma mark -
 #pragma mark Metadata
 
-/***************************
- Get the metadata from the file
- **************************/
+//*****//
 + (NSDictionary *)metadataForPersistentStoreWithURL:(NSURL *)aURL error:(NSError **)aError {
 	NSData *data = [NSData dataWithContentsOfURL:[aURL URLByAppendingPathComponent:@"_Metadata.json"]];
 	NSMutableDictionary *metadata = [[[_CJSONDeserializer deserializer] deserializeAsDictionary:data error:aError] mutableCopy];
@@ -85,9 +79,7 @@ NSString *M3ObjectIdKey = @"objectID";
 	return metadata;
 }
 
-/***************************
- Set the metadata on the file
- **************************/
+//*****//
 + (BOOL)setMetadata:(NSDictionary *)aMetadata forPersistentStoreWithURL:(NSURL*)aURL error:(NSError **)aError {
 	NSString *json = [[_CJSONSerializer serializer] serializeDictionary:aMetadata];
 	return [json writeToURL:[aURL URLByAppendingPathComponent:@"_Metadata.json"] atomically:YES encoding:NSUTF8StringEncoding error:aError];

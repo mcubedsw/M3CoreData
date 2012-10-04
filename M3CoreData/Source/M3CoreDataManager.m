@@ -9,17 +9,10 @@
 
 #import "M3CoreDataManager.h"
 
-@interface M3CoreDataManager ()
-
-- (void)p_setupPersistentStoreCoordinator;
-
-@end
-
-
 @implementation M3CoreDataManager {
 	NSPersistentStoreCoordinator *persistentStoreCoordinator;
-    NSManagedObjectModel *managedObjectModel;
-    NSManagedObjectContext *managedObjectContext;
+	NSManagedObjectModel *managedObjectModel;
+	NSManagedObjectContext *managedObjectContext;
 }
 
 
@@ -31,6 +24,7 @@
 	}];
 }
 
+//*****//
 - (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL storeOptions:(NSDictionary *)aOptions {
 	if ((self = [super init])) {
 		_initialType = [aType ?: NSXMLStoreType copy];
@@ -55,29 +49,32 @@
     return managedObjectModel;
 }
 
-
 //*****//
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+	return [self persistentStoreCoordinatorWithError:NULL];
+}
+
+//*****//
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinatorWithError:(NSError **)aError {
 	if(!persistentStoreCoordinator) {
 		persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-		[self p_setupPersistentStoreCoordinator];
+		[self p_setupPersistentStoreCoordinatorWithError:aError];
 	}
     return persistentStoreCoordinator;
 }
 
-
 //*****//
-- (void)p_setupPersistentStoreCoordinator {
+- (void)p_setupPersistentStoreCoordinatorWithError:(NSError **)aError {
 	NSError *error = nil;
-	NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption:@YES };
+	NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption : @YES, NSInferMappingModelAutomaticallyOption : @YES };
 	NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:self.initialType
 																		configuration:nil
 																				  URL:self.dataStoreURL
 																			  options:options
 																				error:&error];
 	if (!store) {
-		if (error.code != NSPersistentStoreIncompatibleVersionHashError) {
-			[[NSApplication sharedApplication] presentError:error];
+		if (error.code != NSPersistentStoreIncompatibleVersionHashError && aError) {
+			*aError = error;
 			return;
 		}
 		
@@ -89,7 +86,6 @@
 		}
 	}
 }
-
 
 //*****//
 - (NSManagedObjectContext *)managedObjectContext {
@@ -111,32 +107,32 @@
 #pragma mark Saving
 
 //*****//
-- (NSApplicationTerminateReply)save {
+- (BOOL)save {
+	return [self saveWithError:NULL];
+}
+
+//*****//
+- (BOOL)saveWithError:(NSError **)aError {
 	NSError *error = nil;
 	NSManagedObjectContext *moc = self.managedObjectContext;
 	if (!moc) {
-		return NSTerminateNow;
+		return YES;
 	}
 
 	//We don't want to quit if the user is still editing
 	if (![moc commitEditing]) {
-		return NSTerminateCancel;
+#warning Add error here
+		return NO;
 	}
 
 	//If we've got changes but can't save show the error and offer whether to quit anyway
 	if (moc.hasChanges && ![moc save:&error]) {
-		BOOL errorResult = [[NSApplication sharedApplication] presentError:error];
-		
-		if (errorResult == YES) {
-			return NSTerminateCancel;
+		if (aError != NULL) {
+			*aError = error;
 		}
-
-		NSInteger alertReturn = NSRunAlertPanel(nil, @"Could not save changes while quitting. Quit anyway?" , @"Quit anyway", @"Cancel", nil);
-		if (alertReturn == NSAlertAlternateReturn) {
-			return NSTerminateCancel;
-		}
+		return NO;
 	}
-	return NSTerminateNow;
+	return YES;
 }
 
 @end

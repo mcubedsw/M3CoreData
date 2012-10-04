@@ -8,7 +8,6 @@
  *****************************************************************/
 
 
-
 @interface M3JSONAtomicStore : NSAtomicStore 
 
 @end

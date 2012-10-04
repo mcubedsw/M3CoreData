@@ -17,7 +17,7 @@
 //*****//
 - (id)initWithModel:(NSManagedObjectModel *)aModel {
 	if ((self = [super init])) {
-		_model = aModel;
+		_managedObjectModel = aModel;
 	}
 	return self;
 }
@@ -32,7 +32,7 @@
 //*****//
 - (NSDictionary *)loadFromURL:(NSURL *)aURL {
 	NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionary];
-	[self.model.entitiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *entityName, NSEntityDescription *entity, BOOL *stop) {
+	[self.managedObjectModel.entitiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *entityName, NSEntityDescription *entity, BOOL *stop) {
 		NSString *entityFile = [NSString stringWithFormat:@"%@.json", entityName];
 		NSData *entityData = [NSData dataWithContentsOfURL:[aURL URLByAppendingPathComponent:entityFile]];
 		if (!entityData) return;
@@ -68,7 +68,7 @@
 		
 		NSString *entityName = [jsonId componentsSeparatedByString:@"."][0];
 		NSString *objectId = [jsonId componentsSeparatedByString:@"."][1];
-		NSEntityDescription *entity = self.model.entitiesByName[entityName];
+		NSEntityDescription *entity = self.managedObjectModel.entitiesByName[entityName];
 		
 		[entity.attributesByName enumerateKeysAndObjectsUsingBlock:^(NSString *attributeName, NSAttributeDescription *attribute, BOOL *stop) {
 			id attributeValue = [object valueForKey:attributeName];
@@ -81,8 +81,9 @@
 				
 				if ([classValueName isEqualToString:@"NSURL"]) {
 					attributeValue = [NSString stringWithFormat:@"@url(%@)", attributeValue];
+#warning Handle UI Color
 				} else if ([classValueName isEqualToString:@"NSColor"]) {
-					NSColor *colour = [attributeValue colorUsingColorSpace:[NSColorSpace deviceRGBColorSpace]];
+					M3Color *colour = [attributeValue colorUsingColorSpace:[NSColorSpace deviceRGBColorSpace]];
 					attributeValue = [NSString stringWithFormat:@"@rgba(%f,%f,%f,%f.2)", 255 * colour.redComponent, 255 * colour.greenComponent, 255 * colour.blueComponent, colour.alphaComponent];
 				} else {
 					attributeValue = [[NSValueTransformer valueTransformerForName:attribute.valueTransformerName] reverseTransformedValue:attributeValue];
@@ -149,7 +150,7 @@
 	if (!object) {
 		NSString *entityName = [aId componentsSeparatedByString:@"."][0];
 		
-		NSEntityDescription *entity = self.model.entitiesByName[entityName];
+		NSEntityDescription *entity = self.managedObjectModel.entitiesByName[entityName];
 		NSDictionary *objectData = aDict[aId];
 		NSAssert(entity, @"Entity with name '%@' does not exist", entityName);
 		
@@ -171,6 +172,7 @@
 				} else if ([classValueName isEqualToString:@"NSURL"]) {
 					NSAssert([attributeValue hasPrefix:@"@url("], @"URL in attribute '%@' in JSON object '%@' isn't correctly defined as @url()", attributeName, aId);
 					attributeValue = [NSURL URLWithString:[attributeValue substringWithRange:NSMakeRange(5, [attributeValue length] - 6)]];
+#warning Handle UI Color
 				} else if ([classValueName isEqualToString:@"NSColor"]) {
 					NSAssert([attributeValue hasPrefix:@"@rgba("], @"Colour in attribute '%@' in JSON object '%@' isn't correctly defined as @rgba()", attributeName, aId);
 					NSArray *colourComponents = [[attributeValue substringWithRange:NSMakeRange(6, [attributeValue length] - 7)] componentsSeparatedByString:@","];

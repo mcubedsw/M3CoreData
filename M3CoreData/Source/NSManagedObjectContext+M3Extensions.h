@@ -7,8 +7,6 @@
  Please read the LICENCE.txt for licensing information
  *****************************************************************/
 
-#import <Cocoa/Cocoa.h>
-
 /**
  @category NSManagedObjectContext(M3Extensions)
  This category provides a simpler interface to the more common functions in Core Data,
@@ -22,7 +20,7 @@
  @param aName The name of the entity to return objects from
  @param aPredicate The predicate with which to filter the objects
  @param aDescriptors An array of NSSortDescriptors
- @result An array of NSManagedObjects matching the predicate in the enitty with the supplied name
+ @return An array of NSManagedObjects matching the predicate in the enitty with the supplied name
  */
 - (NSArray *)m3_objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors;
 
@@ -33,7 +31,7 @@
  @param aDescriptors An array of NSSortDescriptors
  @param aSetup A block to preform any extra setup on the fetchrequest
  @param aError A pointer to an NSError object
- @result An array of NSManagedObjects matching the predicate in the enitty with the supplied name
+ @return An array of NSManagedObjects matching the predicate in the enitty with the supplied name
  */
 - (NSArray *)m3_objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors extraRequestSetup:(void (^)(NSFetchRequest *request))aSetup error:(NSError **)aError;
 
@@ -42,7 +40,7 @@
  @param aName The name of the entity in which to create the object
  @param aInsert YES if the new value should be inserted into the managed object context, otherwise NO.
  @param aError A pointer to an NSError object
- @result The newly created NSMangagedObject
+ @return The newly created NSMangagedObject
  */
 - (id)m3_createObjectInEntityWithName:(NSString *)aName shouldInsert:(BOOL)aInsert error:(NSError **)aError;
 
@@ -50,7 +48,7 @@
  @brief Returns the number of objects in the entity with the supplied name, filtered by the predicate
  @param aName The name of the entity to return objects from
  @param aPredicate The predicate with which to filter the objects
- @result The number of objects in the supplied entity
+ @return The number of objects in the supplied entity
  */
 - (NSUInteger)m3_numberOfObjectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate;
 
