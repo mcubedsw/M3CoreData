@@ -1,5 +1,5 @@
 /*****************************************************************
- M3JSONStore.m
+ M3JSONStoreTests.m
  M3CoreData
  
  Created by Martin Pilkington on 28/05/2012.

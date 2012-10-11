@@ -95,8 +95,3 @@ Old: `- (id)initWithModel:(NSManagedObjectModel *) andDataAtURL:(NSURL *)`
 New: `- (id)initWithModel:(NSManagedObjectModel *) dataURL:(NSURL *)`
 
 <hr/>
-
-_M3FixtureController_
-
-**Added**
-`@property (readonly) NSManagedObjectModel *managedObjectModel`

@@ -61,6 +61,11 @@
 		99EB5D821368405D001094BF /* _CSerializedJSONData.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D6E1368405C001094BF /* _CSerializedJSONData.h */; };
 		99EB5D831368405D001094BF /* _CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D6F1368405C001094BF /* _CSerializedJSONData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EC79E211D7C830002C472B /* M3CoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EC79E111D7C830002C472B /* M3CoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		99FBCD21162588F80040801E /* M3FixtureControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCD20162588F80040801E /* M3FixtureControllerTests.m */; };
+		99FBCD24162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCD23162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m */; };
+		99FBCD27162589220040801E /* M3CoreDataManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCD26162589220040801E /* M3CoreDataManagerTests.m */; };
+		99FBCD2E16259DD00040801E /* M3TestManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCD2D16259DCF0040801E /* M3TestManagedObjectContext.m */; };
+		99FBCD321625A3070040801E /* M3CustomManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCD311625A3070040801E /* M3CustomManagedObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +151,16 @@
 		99EB5D6E1368405C001094BF /* _CSerializedJSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CSerializedJSONData.h; sourceTree = "<group>"; };
 		99EB5D6F1368405C001094BF /* _CSerializedJSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CSerializedJSONData.m; sourceTree = "<group>"; };
 		99EC79E111D7C830002C472B /* M3CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3CoreData.h; sourceTree = "<group>"; };
+		99FBCD1F162588F80040801E /* M3FixtureControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3FixtureControllerTests.h; sourceTree = "<group>"; };
+		99FBCD20162588F80040801E /* M3FixtureControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3FixtureControllerTests.m; sourceTree = "<group>"; };
+		99FBCD22162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+M3ExtensionsTests.h"; sourceTree = "<group>"; };
+		99FBCD23162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+M3ExtensionsTests.m"; sourceTree = "<group>"; };
+		99FBCD25162589220040801E /* M3CoreDataManagerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3CoreDataManagerTests.h; sourceTree = "<group>"; };
+		99FBCD26162589220040801E /* M3CoreDataManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3CoreDataManagerTests.m; sourceTree = "<group>"; };
+		99FBCD2C16259DCF0040801E /* M3TestManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3TestManagedObjectContext.h; sourceTree = "<group>"; };
+		99FBCD2D16259DCF0040801E /* M3TestManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3TestManagedObjectContext.m; sourceTree = "<group>"; };
+		99FBCD301625A3070040801E /* M3CustomManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3CustomManagedObject.h; sourceTree = "<group>"; };
+		99FBCD311625A3070040801E /* M3CustomManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3CustomManagedObject.m; sourceTree = "<group>"; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -307,10 +322,17 @@
 		99EB5D1B13683B2B001094BF /* M3CoreData Tests */ = {
 			isa = PBXGroup;
 			children = (
+				99FBCD25162589220040801E /* M3CoreDataManagerTests.h */,
+				99FBCD26162589220040801E /* M3CoreDataManagerTests.m */,
 				99EB5D2913683BB7001094BF /* M3JSONAtomicStoreTests.h */,
 				99EB5D2A13683BB7001094BF /* M3JSONAtomicStoreTests.m */,
 				991C4DC21573E55F00CC43F3 /* M3JSONStoreTests.h */,
 				991C4DC31573E55F00CC43F3 /* M3JSONStoreTests.m */,
+				99FBCD1F162588F80040801E /* M3FixtureControllerTests.h */,
+				99FBCD20162588F80040801E /* M3FixtureControllerTests.m */,
+				99FBCD22162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.h */,
+				99FBCD23162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m */,
+				99FBCD2F16259DD30040801E /* Helpers */,
 				99EB5D1C13683B2B001094BF /* Supporting Files */,
 			);
 			path = "M3CoreData Tests";
@@ -365,6 +387,17 @@
 				99EB5D6F1368405C001094BF /* _CSerializedJSONData.m */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		99FBCD2F16259DD30040801E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				99FBCD2C16259DCF0040801E /* M3TestManagedObjectContext.h */,
+				99FBCD2D16259DCF0040801E /* M3TestManagedObjectContext.m */,
+				99FBCD301625A3070040801E /* M3CustomManagedObject.h */,
+				99FBCD311625A3070040801E /* M3CustomManagedObject.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,7 +475,9 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = M3;
 				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "M Cubed Software";
 			};
 			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "M3CoreData" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -542,6 +577,11 @@
 			files = (
 				99EB5D2B13683BB7001094BF /* M3JSONAtomicStoreTests.m in Sources */,
 				991C4DC41573E55F00CC43F3 /* M3JSONStoreTests.m in Sources */,
+				99FBCD21162588F80040801E /* M3FixtureControllerTests.m in Sources */,
+				99FBCD24162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m in Sources */,
+				99FBCD27162589220040801E /* M3CoreDataManagerTests.m in Sources */,
+				99FBCD2E16259DD00040801E /* M3TestManagedObjectContext.m in Sources */,
+				99FBCD321625A3070040801E /* M3CustomManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

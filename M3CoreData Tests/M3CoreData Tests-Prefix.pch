@@ -9,4 +9,12 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 #define HC_SHORTHAND
+
+#define HC_blockAssertThat(weakSelf, actual, matcher) \
+	HC_assertThatWithLocation(weakSelf, actual, matcher, __FILE__, __LINE__)
+
+#ifdef HC_SHORTHAND
+	#define blockAssertThat HC_blockAssertThat
+#endif
+
 #import <OCHamcrest/OCHamcrest.h>

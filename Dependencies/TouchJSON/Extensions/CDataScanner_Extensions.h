@@ -1,10 +1,11 @@
-//
-//  CDataScanner_Extensions.h
-//  TouchCode
-//
-//  Created by Jonathan Wight on 12/08/2005.
-//  Copyright 2005 toxicsoftware.com. All rights reserved.
-//
+/*****************************************************************
+ CDataScanner_Extensions.h
+ M3CoreData
+ 
+ Created by Jonathan Wight on 12/08/2005.
+ 
+ Please read the LICENCE.txt for licensing information
+*****************************************************************/
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
 //  files (the "Software"), to deal in the Software without

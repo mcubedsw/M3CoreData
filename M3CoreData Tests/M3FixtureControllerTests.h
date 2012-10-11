@@ -1,17 +1,13 @@
 /*****************************************************************
- M3JSONAtomicStoreTests.m
+ M3FixtureControllerTests.h
  M3CoreData
  
- Created by Martin Pilkington on 27/04/2011.
+ Created by Martin Pilkington on 10/10/2012.
  
  Please read the LICENCE.txt for licensing information
 *****************************************************************/
 
-#import "M3JSONAtomicStoreTests.h"
-#import "M3JSONAtomicStore.h"
 
-@implementation M3JSONAtomicStoreTests
-
-
+@interface M3FixtureControllerTests : SenTestCase
 
 @end
