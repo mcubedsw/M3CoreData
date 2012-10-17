@@ -48,8 +48,8 @@ New: `- (NSArray *)m3_objectsinEntityWithName:(NSString *) predicate:(NSPredicat
 Old: `- (NSArray *)objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *) extraRequestSetup:(void (^)(NSFetchRequest *request))`
 New: `- (NSArray *)m3_objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *) extraRequestSetup:(void (^)(NSFetchRequest *request)) error:(NSError **)`
 
-Old: `- (id)createObjectInEntityWithName:(NSString *) shouldInsert:(BOOL)`
-New: `- (id)m3_createObjectInEntityWithName:(NSString *) shouldInsert:(BOOL) error:(NSError **)`
+**Removed**
+`- (id)createObjectInEntityWithName:(NSString *) shouldInsert:(BOOL)`
 
 <hr/>
 

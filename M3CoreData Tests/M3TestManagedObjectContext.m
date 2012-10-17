@@ -17,4 +17,11 @@
 	return [super executeFetchRequest:aRequest error:aError];
 }
 
+- (NSUInteger)countForFetchRequest:(NSFetchRequest *)aRequest error:(NSError *__autoreleasing *)aError {
+	if (self.fetchRequestBlock) {
+		return [self.fetchRequestBlock(aRequest, aError) count];
+	}
+	return [super countForFetchRequest:aRequest error:aError];
+}
+
 @end
