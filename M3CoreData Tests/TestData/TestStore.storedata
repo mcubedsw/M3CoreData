@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE database SYSTEM "file:///System/Library/DTDs/CoreData.dtd">
+
+<database>
+    <databaseInfo>
+        <version>134481920</version>
+        <UUID>02D6D8DF-58ED-4778-BC69-9D0D3C146F26</UUID>
+        <nextObjectID>106</nextObjectID>
+        <metadata>
+            <plist version="1.0">
+                <dict>
+                    <key>NSPersistenceFrameworkVersion</key>
+                    <integer>407</integer>
+                    <key>NSStoreModelVersionHashes</key>
+                    <dict>
+                        <key>Companies</key>
+                        <data>
+		fi2hLZOA/8jr+Y+OcLutCvlac+Y01L7fAjMnln1kVRQ=
+		</data>
+                        <key>People</key>
+                        <data>
+		himtppHhm+JZ7/v+sesEPw+dEdPFa7HPG7tzWCtc6L0=
+		</data>
+                    </dict>
+                    <key>NSStoreModelVersionHashesVersion</key>
+                    <integer>3</integer>
+                    <key>NSStoreModelVersionIdentifiers</key>
+                    <array>
+                        <string>1.0</string>
+                    </array>
+                </dict>
+            </plist>
+        </metadata>
+    </databaseInfo>
+    <object type="COMPANIES" id="z102">
+        <attribute name="name" type="string">Acme Inc</attribute>
+        <relationship name="employees" type="0/0" destination="PEOPLE" idrefs="z104 z106"></relationship>
+    </object>
+    <object type="PEOPLE" id="z103">
+        <attribute name="name" type="string">Joe Bloggs</attribute>
+        <relationship name="company" type="1/1" destination="COMPANIES" idrefs="z105"></relationship>
+    </object>
+    <object type="PEOPLE" id="z104">
+        <attribute name="name" type="string">Jane Doe</attribute>
+        <relationship name="company" type="1/1" destination="COMPANIES" idrefs="z102"></relationship>
+    </object>
+    <object type="COMPANIES" id="z105">
+        <attribute name="name" type="string">Tesco</attribute>
+        <relationship name="employees" type="0/0" destination="PEOPLE" idrefs="z103"></relationship>
+    </object>
+    <object type="PEOPLE" id="z106">
+        <attribute name="name" type="string">John Doe</attribute>
+        <relationship name="company" type="1/1" destination="COMPANIES" idrefs="z102"></relationship>
+    </object>
+</database>

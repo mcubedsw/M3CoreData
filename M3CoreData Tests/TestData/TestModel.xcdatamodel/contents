@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Companies" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="employees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="People" inverseName="company" inverseEntity="People" syncable="YES"/>
+    </entity>
+    <entity name="People" syncable="YES">
+        <attribute name="dateOfBirth" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="company" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Companies" inverseName="employees" inverseEntity="Companies" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="People" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Companies" positionX="160" positionY="192" width="128" height="75"/>
+    </elements>
+</model>

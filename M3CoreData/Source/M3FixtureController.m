@@ -38,7 +38,7 @@
 
 //*****//
 - (void)clearObjectCache {
-	objectCache = [[NSMutableDictionary alloc] init];
+	objectCache = [NSMutableDictionary new];
 }
 
 

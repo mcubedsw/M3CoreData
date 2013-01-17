@@ -61,6 +61,9 @@
 		99EB5D821368405D001094BF /* _CSerializedJSONData.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D6E1368405C001094BF /* _CSerializedJSONData.h */; };
 		99EB5D831368405D001094BF /* _CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D6F1368405C001094BF /* _CSerializedJSONData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EC79E211D7C830002C472B /* M3CoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EC79E111D7C830002C472B /* M3CoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		99F44EC316A84CF000D82B5C /* TestModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 99F44EC016A84CF000D82B5C /* TestModel.xcdatamodel */; };
+		99F44EC416A84CF000D82B5C /* TestStore.storedata in Resources */ = {isa = PBXBuildFile; fileRef = 99F44EC116A84CF000D82B5C /* TestStore.storedata */; };
+		99F44EC516A84CF000D82B5C /* UpdatedModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 99F44EC216A84CF000D82B5C /* UpdatedModel.xcdatamodel */; };
 		99FBCD21162588F80040801E /* M3FixtureControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCD20162588F80040801E /* M3FixtureControllerTests.m */; };
 		99FBCD24162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCD23162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m */; };
 		99FBCD27162589220040801E /* M3CoreDataManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCD26162589220040801E /* M3CoreDataManagerTests.m */; };
@@ -151,6 +154,9 @@
 		99EB5D6E1368405C001094BF /* _CSerializedJSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CSerializedJSONData.h; sourceTree = "<group>"; };
 		99EB5D6F1368405C001094BF /* _CSerializedJSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CSerializedJSONData.m; sourceTree = "<group>"; };
 		99EC79E111D7C830002C472B /* M3CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3CoreData.h; sourceTree = "<group>"; };
+		99F44EC016A84CF000D82B5C /* TestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestModel.xcdatamodel; sourceTree = "<group>"; };
+		99F44EC116A84CF000D82B5C /* TestStore.storedata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestStore.storedata; sourceTree = "<group>"; };
+		99F44EC216A84CF000D82B5C /* UpdatedModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UpdatedModel.xcdatamodel; sourceTree = "<group>"; };
 		99FBCD1F162588F80040801E /* M3FixtureControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3FixtureControllerTests.h; sourceTree = "<group>"; };
 		99FBCD20162588F80040801E /* M3FixtureControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3FixtureControllerTests.m; sourceTree = "<group>"; };
 		99FBCD22162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+M3ExtensionsTests.h"; sourceTree = "<group>"; };
@@ -333,6 +339,7 @@
 				99FBCD22162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.h */,
 				99FBCD23162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m */,
 				99FBCD2F16259DD30040801E /* Helpers */,
+				99F44EBF16A84CF000D82B5C /* TestData */,
 				99EB5D1C13683B2B001094BF /* Supporting Files */,
 			);
 			path = "M3CoreData Tests";
@@ -387,6 +394,16 @@
 				99EB5D6F1368405C001094BF /* _CSerializedJSONData.m */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		99F44EBF16A84CF000D82B5C /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				99F44EC016A84CF000D82B5C /* TestModel.xcdatamodel */,
+				99F44EC116A84CF000D82B5C /* TestStore.storedata */,
+				99F44EC216A84CF000D82B5C /* UpdatedModel.xcdatamodel */,
+			);
+			path = TestData;
 			sourceTree = "<group>";
 		};
 		99FBCD2F16259DD30040801E /* Helpers */ = {
@@ -512,6 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99EB5D2013683B2B001094BF /* InfoPlist.strings in Resources */,
+				99F44EC416A84CF000D82B5C /* TestStore.storedata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +600,8 @@
 				99FBCD27162589220040801E /* M3CoreDataManagerTests.m in Sources */,
 				99FBCD2E16259DD00040801E /* M3TestManagedObjectContext.m in Sources */,
 				99FBCD321625A3070040801E /* M3CustomManagedObject.m in Sources */,
+				99F44EC316A84CF000D82B5C /* TestModel.xcdatamodel in Sources */,
+				99F44EC516A84CF000D82B5C /* UpdatedModel.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

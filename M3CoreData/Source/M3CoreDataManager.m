@@ -13,23 +13,25 @@
 	NSPersistentStoreCoordinator *persistentStoreCoordinator;
 	NSManagedObjectModel *managedObjectModel;
 	NSManagedObjectContext *managedObjectContext;
+	NSDictionary *storeOptions;
 }
 
 
 //*****//
-- (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL {
-	return [self initWithInitialType:aType modelURL:aModelURL dataStoreURL:aStoreURL storeOptions:@{ 
+- (id)initWithStoreType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL {
+	return [self initWithStoreType:aType modelURL:aModelURL dataStoreURL:aStoreURL storeOptions:@{ 
 		NSMigratePersistentStoresAutomaticallyOption : @YES, 
 		NSInferMappingModelAutomaticallyOption : @YES
 	}];
 }
 
 //*****//
-- (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL storeOptions:(NSDictionary *)aOptions {
+- (id)initWithStoreType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL storeOptions:(NSDictionary *)aOptions {
 	if ((self = [super init])) {
-		_initialType = [aType ?: NSXMLStoreType copy];
+		_storeType = [aType ?: NSXMLStoreType copy];
 		_modelURL = aModelURL;
 		_dataStoreURL = aStoreURL;
+		storeOptions = [aOptions copy];
 	}
 	return self;
 }
@@ -58,33 +60,15 @@
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinatorWithError:(NSError **)aError {
 	if(!persistentStoreCoordinator) {
 		persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-		[self p_setupPersistentStoreCoordinatorWithError:aError];
+		if (![persistentStoreCoordinator addPersistentStoreWithType:self.storeType
+													  configuration:nil
+																URL:self.dataStoreURL
+															options:storeOptions
+															  error:aError]) {
+			persistentStoreCoordinator = nil;
+		}
 	}
     return persistentStoreCoordinator;
-}
-
-//*****//
-- (void)p_setupPersistentStoreCoordinatorWithError:(NSError **)aError {
-	NSError *error = nil;
-	NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption : @YES, NSInferMappingModelAutomaticallyOption : @YES };
-	NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:self.initialType
-																		configuration:nil
-																				  URL:self.dataStoreURL
-																			  options:options
-																				error:&error];
-	if (!store) {
-		if (error.code != NSPersistentStoreIncompatibleVersionHashError && aError) {
-			*aError = error;
-			return;
-		}
-		
-		//If we failed with an incorrect data model error then pass the version identifiers of the store to the delegate to decide what to do next
-		if ([self.delegate respondsToSelector:@selector(coreDataManager:encounteredIncorrectModelWithVersionIdentifiers:)]) {
-			persistentStoreCoordinator = nil;
-			NSDictionary *metadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:self.initialType URL:self.dataStoreURL error:&error];
-			[self.delegate coreDataManager:self encounteredIncorrectModelWithVersionIdentifiers:metadata[NSStoreModelVersionIdentifiersKey]];
-		}
-	}
 }
 
 //*****//

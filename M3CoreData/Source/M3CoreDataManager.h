@@ -26,7 +26,7 @@
  @result A newly initialised M3CoreDataManager
  @since Available in M3CoreData 1.0 and later
  */
-- (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL;
+- (id)initWithStoreType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL;
 
 /**
  Initialises the manager with the supplied data
@@ -39,14 +39,7 @@
  @return A newly initialised M3CoreDataManager
  @since Available in M3CoreData 1.0 and later
  */
-- (id)initWithInitialType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL storeOptions:(NSDictionary *)aOptions;
-
-/**
- @property delegate
- The manager's delegate
- @since Available in M3CoreData 1.0 and later
- */
-@property (weak) id<M3CoreDataManagerDelegate> delegate;
+- (id)initWithStoreType:(NSString *)aType modelURL:(NSURL *)aModelURL dataStoreURL:(NSURL *)aStoreURL storeOptions:(NSDictionary *)aOptions;
 
 /**
  Returns the URL of the data store backing the managed object context
@@ -64,7 +57,7 @@
  Returns the initial type for the persistent store
  @since M3CoreData 1.0 or later
  */
-@property (readonly) NSString *initialType;
+@property (readonly) NSString *storeType;
 
 /**
  Returns the persistent store coordinator, creating it if necessary
@@ -107,26 +100,5 @@
  @since Available in M3CoreData 1.0 and later
  */
 - (BOOL)saveWithError:(NSError **)aError;
-
-@end
-
-
-
-
-
-/**
- @protocol M3CoreDataManagerDelegate
- Delegate methods for M3CoreDataManager
- */
-@protocol M3CoreDataManagerDelegate <NSObject>
-
-@optional
-/**
- Calls the delegate when the manager encounters a data store which doesn't match the correct model
- @param manager The core data manager
- @param idents A set of version identifiers for the store
- @since Available in M3CoreData 1.0 and later
- */
-- (void)coreDataManager:(M3CoreDataManager *)aManager encounteredIncorrectModelWithVersionIdentifiers:(NSSet *)aIdentifiers;
 
 @end
