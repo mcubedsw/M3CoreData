@@ -7,15 +7,28 @@
  Please read the LICENCE.txt for licensing information
  *****************************************************************/
 
+
+@protocol M3StoreObjectFactory;
+
 /**
 This is a private class used by M3FixtureController and M3JSONAtomicStore.
  It is used for reading and writing a json store
  */
 @interface M3JSONStore : NSObject
 
-- (id)initWithModel:(NSManagedObjectModel *)aModel;
+- (id)initWithManagedObjectModel:(NSManagedObjectModel *)aModel dataURL:(NSURL *)aURL objectFactory:(id<M3StoreObjectFactory>)aFactory;
 
 @property (readonly) NSManagedObjectModel *managedObjectModel;
+@property (readonly) NSURL *dataURL;
+@property (readonly) id<M3StoreObjectFactory> objectFactory;
+
+- (NSDictionary *)loadObjects:(NSError **)aError;
+- (BOOL)saveObjects:(NSDictionary *)aObjects error:(NSError **)aError;
+
+
+
+
+- (id)initWithModel:(NSManagedObjectModel *)aModel;
 
 - (NSDictionary *)loadFromURL:(NSURL *)aURL;
 - (BOOL)saveObjects:(NSDictionary *)aObjects toURL:(NSURL *)aURL error:(NSError **)aError;

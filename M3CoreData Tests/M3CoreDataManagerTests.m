@@ -19,7 +19,6 @@
 	NSBundle *testBundle = [NSBundle bundleWithIdentifier:@"com.mcubedsw.M3CoreData-Tests"];
 	testModelURL = [testBundle URLForResource:@"TestModel" withExtension:@"mom"];
 	testStoreURL = [testBundle URLForResource:@"TestStore" withExtension:@"storedata"];
-	updatedModelURL = [testBundle URLForResource:@"UpdatedModel" withExtension:@"mom"];
 }
 
 - (void)test_storesSuppliedInitialiserArguments {

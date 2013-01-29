@@ -9,6 +9,7 @@
 
 #import "M3FixtureController.h"
 #import "M3JSONStore.h"
+#import "M3ManagedObjectFactory.h"
 #import "_CJSONDeserializer.h"
 
 @implementation M3FixtureController {
@@ -17,46 +18,65 @@
 	NSMutableDictionary *objectCache;
 }
 
-//*****//
+
 + (M3FixtureController *)fixtureControllerWithModel:(NSManagedObjectModel *)aModel dataURL:(NSURL *)aURL {
 	return [[self alloc] initWithModel:aModel dataURL:aURL];
 }
 
 
-//*****//
 - (id)initWithModel:(NSManagedObjectModel *)aModel dataURL:(NSURL *)aURL {
 	if ((self = [super init])) {
 		_managedObjectModel = aModel;
 		_dataURL = aURL;
-		jsonStore = [[M3JSONStore alloc] initWithModel:aModel];
-		objectCache = [NSMutableDictionary new];
-		dataCache = [[jsonStore loadFromURL:aURL] copy];
+		
+		
+		jsonStore = [[M3JSONStore alloc] initWithManagedObjectModel:aModel dataURL:aURL objectFactory:[M3ManagedObjectFactory new]];
+		
 	}
 	return self;
 }
 
 
-//*****//
-- (void)clearObjectCache {
-	objectCache = [NSMutableDictionary new];
-}
-
-
-//*****//
-- (NSArray *)objectsForEntityWithName:(NSString *)aName {
-	NSArray *objectKeys = [dataCache.allKeys filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH %@", aName]];
-	NSMutableArray *returnArray = [NSMutableArray array];
-	for (NSString *objectId in objectKeys) {
-		[returnArray addObject:[self objectForId:objectId]];
+- (NSDictionary *)dataCache {
+	if (!dataCache) {
+		NSError *error = nil;
+		if (!(dataCache = [jsonStore loadObjects:&error])) {
+			NSLog(@"Error loading data store: %@", error);
+		}
 	}
-	return [returnArray copy];
+	return dataCache;
 }
 
-//*****//
-- (id)objectForId:(NSString *)aId {
-	id object = [jsonStore objectFromDictionary:dataCache withId:aId usingMap:objectCache creationBlock:^(NSEntityDescription *entity, NSString *jsonId) {
-		 return [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
-	}];
+
+- (void)clearObjectCache {
+	dataCache = nil;
+}
+
+
+- (NSArray *)objectsForEntityWithName:(NSString *)aEntityName {
+	NSDictionary *entity = self.dataCache[aEntityName];
+	if (!entity) {
+		NSLog(@"Error: entity with name '%@' does not exist", aEntityName);
+		return nil;
+	}
+	return [entity allValues];
+}
+
+
+- (id)objectWithID:(NSString *)aObjectID inEntityWithName:(NSString *)aEntityName {
+	NSDictionary *entity = self.dataCache[aEntityName];
+	
+	if (!entity) {
+		NSLog(@"Error: entity with name '%@' does not exist", aEntityName);
+		return nil;
+	}
+	
+	id object = entity[aObjectID];
+	
+	if (!object) {
+		NSLog(@"Error: object with ID '%@' does not exist", aObjectID);
+	}
+	
 	return object;
 }
 

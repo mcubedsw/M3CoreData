@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Entity1" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES">
+            <userInfo>
+                <entry key="attributeValueClassName" value="NSColor"/>
+            </userInfo>
+        </attribute>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="string" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="transformed" optional="YES" attributeType="Transformable" valueTransformerName="M3TestValueTransformer" syncable="YES">
+            <userInfo>
+                <entry key="attributeValueClassName" value="NSString"/>
+            </userInfo>
+        </attribute>
+        <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES">
+            <userInfo>
+                <entry key="attributeValueClassName" value="NSURL"/>
+            </userInfo>
+        </attribute>
+        <relationship name="oneToMany" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entity2" inverseName="inverseOneToMany" inverseEntity="Entity2" syncable="YES"/>
+        <relationship name="oneToOne" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Entity2" inverseName="inverseOneToOne" inverseEntity="Entity2" syncable="YES"/>
+    </entity>
+    <entity name="Entity2" syncable="YES">
+        <relationship name="inverseOneToMany" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Entity1" inverseName="oneToMany" inverseEntity="Entity1" syncable="YES"/>
+        <relationship name="inverseOneToOne" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Entity1" inverseName="oneToOne" inverseEntity="Entity1" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Entity1" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Entity2" positionX="160" positionY="192" width="128" height="75"/>
+    </elements>
+</model>

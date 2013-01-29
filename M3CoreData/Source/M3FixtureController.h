@@ -62,10 +62,11 @@
 /**
  @brief Returns the object matching the supplied ID
  This method will create and fulfill all relationships required
- @param aString The ID of the object to generate, in the format ‹‹EntityName››.‹‹ObjectNumber››
+ @param aObjectID The ID of the object to generate
+ @param aEntityName The name of the entity which contains the object
  @return An NSManagedObject representing the data for the required object
  @since Available in M3CoreData 1.0 and later
  */
-- (id)objectForId:(NSString *)aString;
+- (id)objectWithID:(NSString *)aObjectID inEntityWithName:(NSString *)aEntityName;
 
 @end

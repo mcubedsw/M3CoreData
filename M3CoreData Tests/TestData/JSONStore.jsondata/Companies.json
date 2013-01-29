@@ -1,0 +1,15 @@
+{
+	"1":{
+		"name":"Acme Inc",
+		"employees":[
+			"People.jane",
+			"People.john"
+		]
+	},
+	"2":{
+		"name":"Tesco",
+		"employees":[
+			"People.joe"
+		]
+	}
+}

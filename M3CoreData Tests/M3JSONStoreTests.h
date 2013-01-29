@@ -7,6 +7,9 @@
  Please read the LICENCE.txt for licensing information
  *****************************************************************/
 
+#import <OCMock/OCMock.h>
+
+
 @interface M3JSONStoreTests : SenTestCase
 
 @end

@@ -45,7 +45,7 @@ NSString *M3ObjectIdKey = @"objectID";
 	}
 		
 	if ((self = [super initWithPersistentStoreCoordinator:aCoordinator configurationName:aConfigurationName URL:aURL options:aOptions])) {
-		//Create the store if it doesn't exist
+		//Create the store if it doesn't exist - WE SHOULDN'T DO THIS! ONLY DO IT AT SAVE
 		if (!storeExists) {
 			if (![[NSFileManager defaultManager] createDirectoryAtPath:aURL.path withIntermediateDirectories:YES attributes:nil error:NULL]) {
 				return nil;
@@ -237,6 +237,7 @@ NSString *M3ObjectIdKey = @"objectID";
 		//Ignore any non-numeric objects, our stores are 1 indexed
 		if (jsonId.integerValue == 0) continue;
 
+		//We don't use the return value as it is put in the map
 		[jsonStore objectFromDictionary:objectData withId:jsonId usingMap:nodemap creationBlock:^(NSEntityDescription *entity, NSString *jsonId) {
 			NSManagedObjectID *objectId = [self objectIDForEntity:entity referenceObject:jsonId];
 			return [[NSAtomicStoreCacheNode alloc] initWithObjectID:objectId];									  
@@ -258,6 +259,7 @@ NSString *M3ObjectIdKey = @"objectID";
 
 
 //*****//
+//DO WE NEED THIS?
 - (NSAtomicStoreCacheNode *)newCacheNodeForManagedObject:(NSManagedObject *)aManagedObject {
 	NSAtomicStoreCacheNode *node = [[NSAtomicStoreCacheNode alloc] initWithObjectID:aManagedObject.objectID];
 	[self updateCacheNode:node fromManagedObject:aManagedObject];

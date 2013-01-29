@@ -27,8 +27,15 @@
 		991C4DB71573D5B500CC43F3 /* OCHamcrest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 991C4DB31573D58100CC43F3 /* OCHamcrest.framework */; };
 		991C4DC41573E55F00CC43F3 /* M3JSONStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 991C4DC31573E55F00CC43F3 /* M3JSONStoreTests.m */; };
 		991C54AF136853CD007E307A /* M3CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* M3CoreData.framework */; };
+		9922D42A16B6B8D900FD328B /* JSONStore.jsondata in Resources */ = {isa = PBXBuildFile; fileRef = 9922D42916B6B8D900FD328B /* JSONStore.jsondata */; };
+		9922D42D16B6BE5600FD328B /* M3ManagedObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9922D42B16B6BE5600FD328B /* M3ManagedObjectFactory.h */; };
+		9922D42E16B6BE5600FD328B /* M3ManagedObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9922D42C16B6BE5600FD328B /* M3ManagedObjectFactory.m */; };
+		996B5B9016AD7D4200865E02 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996B5B8F16AD7D4200865E02 /* OCMock.framework */; };
+		996B5B9116AD7D9100865E02 /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 996B5B8F16AD7D4200865E02 /* OCMock.framework */; };
+		996B5B9416AD925B00865E02 /* JSONModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 996B5B9216AD925B00865E02 /* JSONModel.xcdatamodeld */; };
 		9972E45D11B7EEE300E322E5 /* M3CoreDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9972E45B11B7EEE300E322E5 /* M3CoreDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9972E45E11B7EEE300E322E5 /* M3CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9972E45C11B7EEE300E322E5 /* M3CoreDataManager.m */; };
+		998130A816AEF002002AEA33 /* M3TestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 998130A716AEF002002AEA33 /* M3TestValueTransformer.m */; };
 		99A8969A136DA04300757DE5 /* M3FixtureController.h in Headers */ = {isa = PBXBuildFile; fileRef = 99A89696136DA04300757DE5 /* M3FixtureController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		99A8969B136DA04300757DE5 /* M3FixtureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A89697136DA04300757DE5 /* M3FixtureController.m */; };
 		99A8969C136DA04300757DE5 /* M3JSONStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 99A89698136DA04300757DE5 /* M3JSONStore.h */; };
@@ -63,7 +70,6 @@
 		99EC79E211D7C830002C472B /* M3CoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EC79E111D7C830002C472B /* M3CoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		99F44EC316A84CF000D82B5C /* TestModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 99F44EC016A84CF000D82B5C /* TestModel.xcdatamodel */; };
 		99F44EC416A84CF000D82B5C /* TestStore.storedata in Resources */ = {isa = PBXBuildFile; fileRef = 99F44EC116A84CF000D82B5C /* TestStore.storedata */; };
-		99F44EC516A84CF000D82B5C /* UpdatedModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 99F44EC216A84CF000D82B5C /* UpdatedModel.xcdatamodel */; };
 		99FBCD21162588F80040801E /* M3FixtureControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCD20162588F80040801E /* M3FixtureControllerTests.m */; };
 		99FBCD24162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCD23162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m */; };
 		99FBCD27162589220040801E /* M3CoreDataManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FBCD26162589220040801E /* M3CoreDataManagerTests.m */; };
@@ -96,6 +102,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				991C4DB71573D5B500CC43F3 /* OCHamcrest.framework in CopyFiles */,
+				996B5B9116AD7D9100865E02 /* OCMock.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,8 +120,16 @@
 		991C4DC21573E55F00CC43F3 /* M3JSONStoreTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3JSONStoreTests.h; sourceTree = "<group>"; };
 		991C4DC31573E55F00CC43F3 /* M3JSONStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3JSONStoreTests.m; sourceTree = "<group>"; };
 		991C4DC51573E85700CC43F3 /* Info.plist.prefix */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Info.plist.prefix; sourceTree = "<group>"; };
+		9922D42916B6B8D900FD328B /* JSONStore.jsondata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JSONStore.jsondata; sourceTree = "<group>"; };
+		9922D42B16B6BE5600FD328B /* M3ManagedObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3ManagedObjectFactory.h; sourceTree = "<group>"; };
+		9922D42C16B6BE5600FD328B /* M3ManagedObjectFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3ManagedObjectFactory.m; sourceTree = "<group>"; };
+		996B5B8E16AD786200865E02 /* M3StoreObjectFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M3StoreObjectFactory.h; sourceTree = "<group>"; };
+		996B5B8F16AD7D4200865E02 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCMock.framework; sourceTree = "<group>"; };
+		996B5B9316AD925B00865E02 /* JSONModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JSONModel.xcdatamodel; sourceTree = "<group>"; };
 		9972E45B11B7EEE300E322E5 /* M3CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = M3CoreDataManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9972E45C11B7EEE300E322E5 /* M3CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3CoreDataManager.m; sourceTree = "<group>"; };
+		998130A616AEF002002AEA33 /* M3TestValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3TestValueTransformer.h; sourceTree = "<group>"; };
+		998130A716AEF002002AEA33 /* M3TestValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3TestValueTransformer.m; sourceTree = "<group>"; };
 		99A89696136DA04300757DE5 /* M3FixtureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3FixtureController.h; sourceTree = "<group>"; };
 		99A89697136DA04300757DE5 /* M3FixtureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3FixtureController.m; sourceTree = "<group>"; };
 		99A89698136DA04300757DE5 /* M3JSONStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3JSONStore.h; sourceTree = "<group>"; };
@@ -156,7 +171,6 @@
 		99EC79E111D7C830002C472B /* M3CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3CoreData.h; sourceTree = "<group>"; };
 		99F44EC016A84CF000D82B5C /* TestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestModel.xcdatamodel; sourceTree = "<group>"; };
 		99F44EC116A84CF000D82B5C /* TestStore.storedata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestStore.storedata; sourceTree = "<group>"; };
-		99F44EC216A84CF000D82B5C /* UpdatedModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UpdatedModel.xcdatamodel; sourceTree = "<group>"; };
 		99FBCD1F162588F80040801E /* M3FixtureControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3FixtureControllerTests.h; sourceTree = "<group>"; };
 		99FBCD20162588F80040801E /* M3FixtureControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3FixtureControllerTests.m; sourceTree = "<group>"; };
 		99FBCD22162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+M3ExtensionsTests.h"; sourceTree = "<group>"; };
@@ -186,6 +200,7 @@
 				991C54AF136853CD007E307A /* M3CoreData.framework in Frameworks */,
 				99EB5D1613683B2B001094BF /* Cocoa.framework in Frameworks */,
 				991C4DB51573D59100CC43F3 /* OCHamcrest.framework in Frameworks */,
+				996B5B9016AD7D4200865E02 /* OCMock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +289,9 @@
 			children = (
 				99A89698136DA04300757DE5 /* M3JSONStore.h */,
 				99A89699136DA04300757DE5 /* M3JSONStore.m */,
+				996B5B8E16AD786200865E02 /* M3StoreObjectFactory.h */,
+				9922D42B16B6BE5600FD328B /* M3ManagedObjectFactory.h */,
+				9922D42C16B6BE5600FD328B /* M3ManagedObjectFactory.m */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -281,6 +299,7 @@
 		99C3A0451572C25700A6CAD5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				996B5B8F16AD7D4200865E02 /* OCMock.framework */,
 				991C4DB31573D58100CC43F3 /* OCHamcrest.framework */,
 				99EB5D591368405C001094BF /* TouchJSON */,
 			);
@@ -399,9 +418,10 @@
 		99F44EBF16A84CF000D82B5C /* TestData */ = {
 			isa = PBXGroup;
 			children = (
+				9922D42916B6B8D900FD328B /* JSONStore.jsondata */,
 				99F44EC016A84CF000D82B5C /* TestModel.xcdatamodel */,
 				99F44EC116A84CF000D82B5C /* TestStore.storedata */,
-				99F44EC216A84CF000D82B5C /* UpdatedModel.xcdatamodel */,
+				996B5B9216AD925B00865E02 /* JSONModel.xcdatamodeld */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -413,6 +433,8 @@
 				99FBCD2D16259DCF0040801E /* M3TestManagedObjectContext.m */,
 				99FBCD301625A3070040801E /* M3CustomManagedObject.h */,
 				99FBCD311625A3070040801E /* M3CustomManagedObject.m */,
+				998130A616AEF002002AEA33 /* M3TestValueTransformer.h */,
+				998130A716AEF002002AEA33 /* M3TestValueTransformer.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -440,6 +462,7 @@
 				99A8969A136DA04300757DE5 /* M3FixtureController.h in Headers */,
 				99A8969C136DA04300757DE5 /* M3JSONStore.h in Headers */,
 				99C3A0431572B8D100A6CAD5 /* M3CoreDataConstants.h in Headers */,
+				9922D42D16B6BE5600FD328B /* M3ManagedObjectFactory.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +516,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = M3;
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "M Cubed Software";
 			};
 			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "M3CoreData" */;
@@ -530,6 +553,7 @@
 			files = (
 				99EB5D2013683B2B001094BF /* InfoPlist.strings in Resources */,
 				99F44EC416A84CF000D82B5C /* TestStore.storedata in Resources */,
+				9922D42A16B6B8D900FD328B /* JSONStore.jsondata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +610,7 @@
 				99A8969B136DA04300757DE5 /* M3FixtureController.m in Sources */,
 				99A8969D136DA04300757DE5 /* M3JSONStore.m in Sources */,
 				99C3A0441572B8D100A6CAD5 /* M3CoreDataConstants.m in Sources */,
+				9922D42E16B6BE5600FD328B /* M3ManagedObjectFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,7 +626,8 @@
 				99FBCD2E16259DD00040801E /* M3TestManagedObjectContext.m in Sources */,
 				99FBCD321625A3070040801E /* M3CustomManagedObject.m in Sources */,
 				99F44EC316A84CF000D82B5C /* TestModel.xcdatamodel in Sources */,
-				99F44EC516A84CF000D82B5C /* UpdatedModel.xcdatamodel in Sources */,
+				996B5B9416AD925B00865E02 /* JSONModel.xcdatamodeld in Sources */,
+				998130A816AEF002002AEA33 /* M3TestValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,11 +727,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
@@ -717,11 +748,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
@@ -843,6 +879,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		996B5B9216AD925B00865E02 /* JSONModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				996B5B9316AD925B00865E02 /* JSONModel.xcdatamodel */,
+			);
+			currentVersion = 996B5B9316AD925B00865E02 /* JSONModel.xcdatamodel */;
+			path = JSONModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
 }

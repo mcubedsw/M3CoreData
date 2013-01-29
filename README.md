@@ -94,4 +94,7 @@ New: `+ (M3FixtureController *)fixtureControllerWithModel:(NSManagedObjectModel 
 Old: `- (id)initWithModel:(NSManagedObjectModel *) andDataAtURL:(NSURL *)`
 New: `- (id)initWithModel:(NSManagedObjectModel *) dataURL:(NSURL *)`
 
+Old: `- (id)objectForID:(NSString *)`
+New: `- (id)objectWithID:(NSString *) inEntityWithName:(NSString *)`
+
 <hr/>
