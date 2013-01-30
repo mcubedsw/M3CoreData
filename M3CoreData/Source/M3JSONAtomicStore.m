@@ -37,6 +37,10 @@ NSString *M3ObjectIdKey = @"objectID";
 
 //*****//
 - (id)initWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)aCoordinator configurationName:(NSString *)aConfigurationName URL:(NSURL*)aURL options:(NSDictionary *)aOptions {
+	self = nil;
+	return self;
+	
+	
 	BOOL isDirectory;
 	BOOL storeExists = [[NSFileManager defaultManager] fileExistsAtPath:aURL.path isDirectory:&isDirectory];
 	BOOL isBundle = !isDirectory && storeExists;

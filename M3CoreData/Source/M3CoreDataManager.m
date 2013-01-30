@@ -105,7 +105,8 @@
 
 	//We don't want to quit if the user is still editing
 	if (![moc commitEditing]) {
-#warning Add error here
+		if (aError != NULL) *aError = [NSError errorWithDomain:M3CoreDataErrorDomain code:M3ManagedObjectContextCouldNotCommitEditingError userInfo:nil];
+		
 		return NO;
 	}
 

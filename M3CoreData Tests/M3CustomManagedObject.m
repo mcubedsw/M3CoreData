@@ -1,10 +1,11 @@
-//
-//  M3CustomManagedObject.m
-//  M3CoreData
-//
-//  Created by Martin Pilkington on 10/10/2012.
-//  Copyright (c) 2012 M Cubed Software. All rights reserved.
-//
+/*****************************************************************
+ M3CustomManagedObject.m
+ 
+ 
+ Created by Martin Pilkington on 10/10/2012.
+ 
+ Please read the LICENCE.txt for licensing information
+*****************************************************************/
 
 #import "M3CustomManagedObject.h"
 

@@ -10,6 +10,7 @@
 extern NSString *M3CoreDataErrorDomain;
 
 extern const NSInteger M3EntityNotFoundError;
+extern const NSInteger M3ManagedObjectContextCouldNotCommitEditingError;
 
 extern NSString *M3JSONStoreType;
 

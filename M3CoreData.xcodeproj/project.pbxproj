@@ -44,11 +44,8 @@
 		99B68A7912B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B68A7712B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m */; };
 		99C3A0431572B8D100A6CAD5 /* M3CoreDataConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 99C3A0411572B8D100A6CAD5 /* M3CoreDataConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		99C3A0441572B8D100A6CAD5 /* M3CoreDataConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C3A0421572B8D100A6CAD5 /* M3CoreDataConstants.m */; };
-		99EB5D0C1368387A001094BF /* M3JSONAtomicStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		99EB5D0D1368387A001094BF /* M3JSONAtomicStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D0B1368387A001094BF /* M3JSONAtomicStore.m */; };
 		99EB5D1613683B2B001094BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EB5D1513683B2B001094BF /* Cocoa.framework */; };
 		99EB5D2013683B2B001094BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99EB5D1E13683B2B001094BF /* InfoPlist.strings */; };
-		99EB5D2B13683BB7001094BF /* M3JSONAtomicStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D2A13683BB7001094BF /* M3JSONAtomicStoreTests.m */; };
 		99EB5D701368405C001094BF /* _CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D5A1368405C001094BF /* _CDataScanner.h */; };
 		99EB5D711368405C001094BF /* _CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5D5B1368405C001094BF /* _CDataScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		99EB5D721368405C001094BF /* CDataScanner_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 99EB5D5D1368405C001094BF /* CDataScanner_Extensions.h */; };
@@ -284,6 +281,24 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		990FC1BD16B982510070C6DE /* Not Included In Framework */ = {
+			isa = PBXGroup;
+			children = (
+				99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */,
+				99EB5D0B1368387A001094BF /* M3JSONAtomicStore.m */,
+			);
+			name = "Not Included In Framework";
+			sourceTree = "<group>";
+		};
+		990FC1BE16B982660070C6DE /* Not included in tests */ = {
+			isa = PBXGroup;
+			children = (
+				99EB5D2913683BB7001094BF /* M3JSONAtomicStoreTests.h */,
+				99EB5D2A13683BB7001094BF /* M3JSONAtomicStoreTests.m */,
+			);
+			name = "Not included in tests";
+			sourceTree = "<group>";
+		};
 		992B8449161DB70C00814095 /* Private */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,13 +329,12 @@
 				99C3A0421572B8D100A6CAD5 /* M3CoreDataConstants.m */,
 				9972E45B11B7EEE300E322E5 /* M3CoreDataManager.h */,
 				9972E45C11B7EEE300E322E5 /* M3CoreDataManager.m */,
-				99EB5D0A1368387A001094BF /* M3JSONAtomicStore.h */,
-				99EB5D0B1368387A001094BF /* M3JSONAtomicStore.m */,
 				99A89696136DA04300757DE5 /* M3FixtureController.h */,
 				99A89697136DA04300757DE5 /* M3FixtureController.m */,
 				99B68A7612B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h */,
 				99B68A7712B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m */,
 				992B8449161DB70C00814095 /* Private */,
+				990FC1BD16B982510070C6DE /* Not Included In Framework */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -349,8 +363,6 @@
 			children = (
 				99FBCD25162589220040801E /* M3CoreDataManagerTests.h */,
 				99FBCD26162589220040801E /* M3CoreDataManagerTests.m */,
-				99EB5D2913683BB7001094BF /* M3JSONAtomicStoreTests.h */,
-				99EB5D2A13683BB7001094BF /* M3JSONAtomicStoreTests.m */,
 				991C4DC21573E55F00CC43F3 /* M3JSONStoreTests.h */,
 				991C4DC31573E55F00CC43F3 /* M3JSONStoreTests.m */,
 				99FBCD1F162588F80040801E /* M3FixtureControllerTests.h */,
@@ -358,6 +370,7 @@
 				99FBCD22162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.h */,
 				99FBCD23162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m */,
 				99FBCD2F16259DD30040801E /* Helpers */,
+				990FC1BE16B982660070C6DE /* Not included in tests */,
 				99F44EBF16A84CF000D82B5C /* TestData */,
 				99EB5D1C13683B2B001094BF /* Supporting Files */,
 			);
@@ -448,7 +461,6 @@
 			files = (
 				9972E45D11B7EEE300E322E5 /* M3CoreDataManager.h in Headers */,
 				99B68A7812B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.h in Headers */,
-				99EB5D0C1368387A001094BF /* M3JSONAtomicStore.h in Headers */,
 				99EC79E211D7C830002C472B /* M3CoreData.h in Headers */,
 				99EB5D701368405C001094BF /* _CDataScanner.h in Headers */,
 				99EB5D721368405C001094BF /* CDataScanner_Extensions.h in Headers */,
@@ -597,7 +609,6 @@
 			files = (
 				9972E45E11B7EEE300E322E5 /* M3CoreDataManager.m in Sources */,
 				99B68A7912B4EDC9008E12F3 /* NSManagedObjectContext+M3Extensions.m in Sources */,
-				99EB5D0D1368387A001094BF /* M3JSONAtomicStore.m in Sources */,
 				99EB5D711368405C001094BF /* _CDataScanner.m in Sources */,
 				99EB5D731368405C001094BF /* CDataScanner_Extensions.m in Sources */,
 				99EB5D751368405C001094BF /* NSCharacterSet_Extensions.m in Sources */,
@@ -618,7 +629,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99EB5D2B13683BB7001094BF /* M3JSONAtomicStoreTests.m in Sources */,
 				991C4DC41573E55F00CC43F3 /* M3JSONStoreTests.m in Sources */,
 				99FBCD21162588F80040801E /* M3FixtureControllerTests.m in Sources */,
 				99FBCD24162589120040801E /* NSManagedObjectContext+M3ExtensionsTests.m in Sources */,
