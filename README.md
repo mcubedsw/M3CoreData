@@ -36,63 +36,61 @@ For an example, see JSONStore.jsondata in the M3CoreData Tests project
 ####API changes
 _NSManagedObjectContext+M3Extensions_
 
-**Added**
+**Added**<br/>
 `- (NSArray *)m3_objectsInEntityWithName:(NSString *)aName predicate:(NSPredicate *)aPredicate sortedWithDescriptors:(NSArray *)aDescriptors extraRequestSetup:(void (^)(NSFetchRequest *request))aSetup error:(NSError **)aError`
 
-**Changed**
-Old: `- (NSArray *)objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *)`
+**Changed**<br/>
+Old: `- (NSArray *)objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *)`<br/>
 New: `- (NSArray *)m3_objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *)`
 
-Old: `- (NSArray *)objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *) extraRequestSetup:(void (^)(NSFetchRequest *request))`
+Old: `- (NSArray *)objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *) extraRequestSetup:(void (^)(NSFetchRequest *request))`<br/>
 New: `- (NSArray *)m3_objectsinEntityWithName:(NSString *) predicate:(NSPredicate *) sortedWithDescriptors:(NSArray *) extraRequestSetup:(void (^)(NSFetchRequest *request)) error:(NSError **)`
 
-**Removed**
+**Removed**<br/>
 `- (id)createObjectInEntityWithName:(NSString *) shouldInsert:(BOOL)`
 
 <hr/>
 
 _M3CoreDataManager_
 
-**Added**
-`- (id)initWithInitialType:(NSString *) modelURL:(NSURL *) dataStoreURL:(NSURL *) storeOptions:(NSDictionary *)`
-`@property (readonly) NSURL *dataStoreURL`
-`@property (readonly) NSURL *modelURL`
-`@property (readonly) NSURL *initialType`
-`- (NSPersistentStoreCoordinator *)persistentStoreCoordinatorWithError:(NSError **)`
+**Added**<br/>
+`- (id)initWithInitialType:(NSString *) modelURL:(NSURL *) dataStoreURL:(NSURL *) storeOptions:(NSDictionary *)`<br/>
+`@property (readonly) NSURL *dataStoreURL`<br/>
+`@property (readonly) NSURL *modelURL`<br/>
+`@property (readonly) NSURL *initialType`<br/>
+`- (NSPersistentStoreCoordinator *)persistentStoreCoordinatorWithError:(NSError **)`<br/>
 `- (BOOL)saveWithError:(NSError **)`
 
-**Changed**
-Old: `@property (assign) id delegate`
+**Changed**<br/>
+Old: `@property (assign) id delegate`<br/>
 New: `@property (weak) id<M3CoreDataManagerDelegate> delegate`
 	
-Old: `- (NSPersistentStoreCoordinator *)persistentStoreCoordinator`
+Old: `- (NSPersistentStoreCoordinator *)persistentStoreCoordinator`<br/>
 New: `@property (readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator`
 
-Old: `- (NSManagedObjectModel *)managedObjectModel`
+Old: `- (NSManagedObjectModel *)managedObjectModel`<br/>
 New: `@property (readonly) NSManagedObjectModel *managedObjectModel`
 
-Old: `- (NSManagedObjectContext *)managedObjectContext`
+Old: `- (NSManagedObjectContext *)managedObjectContext`<br/>
 New: `@property (readonly) NSManagedObjectContext *managedObjectContext`
 
-Old: `- (NSApplicationTerminateReply)save`
+Old: `- (NSApplicationTerminateReply)save`<br/>
 New: `- (BOOL)save`
 
 <hr/>
 
 _M3FixtureController_
 
-**Added**
-`@property (readonly) NSManagedObjectModel *managedObjectModel`
+**Added**<br/>
+`@property (readonly) NSManagedObjectModel *managedObjectModel`<br/>
 `@property (readonly) NSURL *dataURL`
 
-**Changed**
-Old: `+ (M3FixtureController *)fixtureControllerWithModel:(NSManagedObjectModel *) andDataAtURL:(NSURL *)`
+**Changed**<br/>
+Old: `+ (M3FixtureController *)fixtureControllerWithModel:(NSManagedObjectModel *) andDataAtURL:(NSURL *)`<br/>
 New: `+ (M3FixtureController *)fixtureControllerWithModel:(NSManagedObjectModel *) dataURL:(NSURL *)`
 
-Old: `- (id)initWithModel:(NSManagedObjectModel *) andDataAtURL:(NSURL *)`
+Old: `- (id)initWithModel:(NSManagedObjectModel *) andDataAtURL:(NSURL *)`<br/>
 New: `- (id)initWithModel:(NSManagedObjectModel *) dataURL:(NSURL *)`
 
-Old: `- (id)objectForID:(NSString *)`
+Old: `- (id)objectForID:(NSString *)`<br/>
 New: `- (id)objectWithID:(NSString *) inEntityWithName:(NSString *)`
-
-<hr/>
